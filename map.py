@@ -95,8 +95,8 @@ def update_coords(row, coords_map):
             break
     
     if name and name in coords_map:
-        row['latitude'] = coords_map[name]['Latitud_Corregida']
-        row['longitude'] = coords_map[name]['Longitud_Corregida']
+        row['latitude'] = coords_map[name]['latitud_corregida']
+        row['longitude'] = coords_map[name]['longitud_corregida']
     return row
 
 def standardize_dataframes(*dataframes):
@@ -149,8 +149,9 @@ def process_facilities(facility_data, coordinate_corrections=None):
     if coordinate_corrections is not None:
         logger.info("📍 Step 3: Applying coordinate corrections...")
         try:
-            coords_map = coordinate_corrections.set_index('Nombre_Original')[
-                ['Latitud_Corregida', 'Longitud_Corregida']
+            # After standardization, column names are lowercase
+            coords_map = coordinate_corrections.set_index('nombre_original')[
+                ['latitud_corregida', 'longitud_corregida']
             ].to_dict('index')
             facility = facility.apply(lambda row: update_coords(row, coords_map), axis=1)
             logger.info(f"✅ Coordinate corrections applied")
