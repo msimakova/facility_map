@@ -258,6 +258,52 @@ class MetabaseDataFetcher:
         elif self.auth_method == 'api_key':
             logger.info("ℹ️ API Key authentication - no logout required")
 
+def process_available_shifts(shifts_data, data_dir='data'):
+    """Procesa los shifts para dejar solo los disponibles y los guarda en available_shifts.csv"""
+    import pandas as pd
+    from datetime import datetime, timezone
+    import pytz
+    if shifts_data is None or shifts_data.empty:
+        logging.warning("⚠️ No shifts data to process.")
+        return False
+    # Filtrar solo shifts publicados y futuros
+    now_utc = pd.Timestamp(datetime.now(timezone.utc))
+    shifts_data['start_time_utc'] = pd.to_datetime(shifts_data['start_time_utc'], utc=True, errors='coerce')
+    available = shifts_data[(shifts_data['status'] == 'PUBLISHED') & (shifts_data['start_time_utc'] > now_utc)]
+    # Seleccionar columnas clave
+    cols = [
+        'facility_id', 'id', 'start_time_utc', 'finish_time_utc', 'specialization',
+        'specialization_display_text', 'category', 'capacity', 'facility_name'
+    ]
+    available = available[cols]
+    # Guardar
+    out_path = os.path.join(data_dir, 'available_shifts.csv')
+    available.to_csv(out_path, index=False, encoding='utf-8')
+    logging.info(f"✅ Available shifts saved to: {out_path} ({len(available)} shifts)")
+    return True
+
+def process_available_offers(offers_data, data_dir='data'):
+    """Procesa las ofertas para dejar solo las disponibles y las guarda en available_offers.csv"""
+    import pandas as pd
+    from datetime import datetime, timezone
+    import pytz
+    if offers_data is None or offers_data.empty:
+        logging.warning("⚠️ No offers data to process.")
+        return False
+    # Filtrar solo ofertas activas/publicadas y futuras si tienen fecha
+    available = offers_data.copy()
+    # TODO: Filtrar por status/fecha cuando conozcamos la estructura
+    # Seleccionar columnas clave (adaptaremos según la estructura real)
+    try:
+        # Guardar todas las columnas por ahora para analizar la estructura
+        out_path = os.path.join(data_dir, 'available_offers.csv')
+        available.to_csv(out_path, index=False, encoding='utf-8')
+        logging.info(f"✅ Available offers saved to: {out_path} ({len(available)} offers)")
+        return True
+    except Exception as e:
+        logging.error(f"❌ Error processing offers: {e}")
+        return False
+
 def main():
     """Main function to fetch data from Metabase and save to files"""
     try:
@@ -272,6 +318,7 @@ def main():
         # Configuration - Change these question IDs according to your Metabase setup
         FACILITY_QUESTION_ID = 4846  # Change this to your facility question ID
         SHIFTS_QUESTION_ID = 4659    # Optional: for shifts data (if needed)
+        OFFERS_QUESTION_ID = 4925    # NEW: for offers data
         
         # Fetch facility data from Metabase
         logger.info("🔄 Fetching facility data from Metabase...")
@@ -293,21 +340,37 @@ def main():
         if shifts_data is not None and not shifts_data.empty:
             if not fetcher.save_data_to_csv(shifts_data, 'raw_shifts.csv', data_dir):
                 logger.warning("⚠️ Failed to save shifts data")
+            # Procesar y guardar shifts disponibles
+            process_available_shifts(shifts_data, data_dir)
         else:
             logger.warning("⚠️ No shifts data fetched")
+        
+        # NEW: Fetch offers data
+        logger.info("🔄 Fetching offers data from Metabase...")
+        offers_data = fetcher.fetch_question_data(OFFERS_QUESTION_ID, "Offers Data")
+        
+        if offers_data is not None and not offers_data.empty:
+            if not fetcher.save_data_to_csv(offers_data, 'raw_offers.csv', data_dir):
+                logger.warning("⚠️ Failed to save offers data")
+            # Procesar y guardar ofertas disponibles
+            process_available_offers(offers_data, data_dir)
+        else:
+            logger.warning("⚠️ No offers data fetched")
         
         logger.info(f"✅ Data fetching completed successfully!")
         logger.info(f"📊 Facility data: {len(facility_data)} rows")
         if shifts_data is not None:
             logger.info(f"📊 Shifts data: {len(shifts_data)} rows")
+        if offers_data is not None:
+            logger.info(f"📊 Offers data: {len(offers_data)} rows")
         
         return True
         
     except Exception as e:
-        logger.error(f"❌ Error in main: {e}")
+        logger.error(f"❌ Error in main function: {e}")
         return False
     finally:
-        # Always logout
+        # Clean up
         if 'fetcher' in locals():
             fetcher.logout()
 
