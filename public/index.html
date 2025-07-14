@@ -114,7 +114,7 @@
                 const hospitalIcon = L.divIcon({ className: 'facility-marker', html: '<img src="logo.png" style="width:22px;height:22px;" alt="Logo"/>', iconSize: [32, 32], iconAnchor: [16, 16], popupAnchor: [0, -20] });
                 let popupContent = '<div class="facility-popup">';
                 popupContent += '<h4 class="facility-header">' + fac.name + '</h4>';
-                popupContent += '<div><strong>ID:</strong> ' + fac.id + '</div>';
+                // popupContent += '<div><strong>ID:</strong> ' + fac.id + '</div>'; // REMOVED ID FIELD
                 popupContent += '<div><strong>Ciudad:</strong> ' + fac.city + '</div>';
                 popupContent += '<div><strong>Dirección:</strong> ' + fac.address + '</div>';
                 popupContent += '<div class="shift-stats">';
