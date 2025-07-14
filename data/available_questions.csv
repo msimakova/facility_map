@@ -1,0 +1,23 @@
+id,name,description,collection_name,database_id,table_id
+1227,-,None,N/A,2,
+2895,+100 pros RICARD,change filter to desired spec,ALEX,2,17.0
+2896,+100 pros RICARD ,change filter to desired spec,ALEX,2,17.0
+2713,>12 and <24 hours Pending Approval Time - By facility by final status  ,None,ALEX,2,
+2680,>12 and <24 Pending Approval Time - Final Status,None,ALEX,2,
+2710,<12 hours Pending Approval Time - By facility by final status,None,ALEX,2,
+2653,>12 hours Pending Approval Time - By facility by final status,None,ALEX,2,
+2679,<12 hours Pending Approval Time - final status by month,None,ALEX,2,
+959,1st shift Bonus Total by month,None,N/A,2,
+923,1st shift bonus x 1st shifts,None,N/A,2,17.0
+896,1st shifter Madrid January,None,N/A,2,
+1140,1st shifters by facility x month,None,Quirón Report,2,14.0
+357,1st Shifters December not interactions with MgM,None,N/A,2,28.0
+893,1st Shifters Month BCN,SQL to check the 1st shifters of BCN,N/A,2,
+1013,1st shifter x month,"Edit times
+min last day of the previous month
+max, Current month end time usually hour 23.59",N/A,2,
+1081,1ST SHIFTER X SPEC,None,N/A,2,
+1149,1st shift hasta hoy,None,N/A,2,
+2257,2411 - ACES turnos publicados por mes,None,ACES update,2,
+2422,2412 - Audit,None,Quality,2,27.0
+2711,>24 and <72 hours Pending Approval Time - By facility by final status ,None,ALEX,2,
