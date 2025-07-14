@@ -468,7 +468,7 @@ def create_facilities_map_with_shifts(facilities_df, shifts_df, offers_df=None):
             facilitiesData.forEach(fac => {{
                 const lat = fac.latitude;
                 const lon = fac.longitude;
-                const hospitalIcon = L.divIcon({{ className: 'facility-marker', html: '<img src="logo.png" style="width:22px;height:22px;" alt="Logo"/>', iconSize: [32, 32], iconAnchor: [16, 16], popupAnchor: [0, -20] }});
+                const hospitalIcon = L.divIcon({{ className: 'facility-marker', html: '<img src="public/logo.png" style="width:22px;height:22px;" alt="Logo"/>', iconSize: [32, 32], iconAnchor: [16, 16], popupAnchor: [0, -20] }});
                 let popupContent = '<div class="facility-popup">';
                 popupContent += '<h4 class="facility-header">' + fac.name + '</h4>';
                 // popupContent += '<div><strong>ID:</strong> ' + fac.id + '</div>'; // REMOVED ID FIELD
@@ -585,7 +585,7 @@ def main():
         if html_content is None:
             logger.error("❌ Failed to generate HTML map")
             return False
-        map_filename = 'index.html'
+        map_filename = 'public/index.html'
         with open(map_filename, 'w', encoding='utf-8') as f:
             f.write(html_content)
         logger.info(f"✅ Facilities map saved as: {map_filename}")
@@ -602,8 +602,8 @@ if __name__ == "__main__":
     if success:
         logger.info("🎉 Map generation completed successfully!")
         logger.info("📂 Generated files:")
-        logger.info("   • index.html - Interactive map")
-        logger.info("🌐 Open index.html in your browser to view the map")
+        logger.info("   • public/index.html - Interactive map")
+        logger.info("🌐 Open public/index.html in your browser to view the map")
     else:
         logger.error("💥 Map generation failed!")
         logger.error("Make sure you have run data.py first to fetch the data from Metabase") 
