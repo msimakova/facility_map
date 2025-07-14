@@ -271,15 +271,6 @@ def create_facilities_map(facilities_df):
             logger.warning(f"⚠️ Error processing facility row: {e}")
             continue
     
-    # Get unique specializations for filtering
-    all_specializations = set()
-    for fac in facilities_data:
-        all_specializations.update(fac['specialization'])
-    all_specializations = sorted(list(all_specializations))
-    
-    # Get unique cities
-    all_cities = sorted(list(set(fac['city'] for fac in facilities_data if fac['city'] != 'N/A')))
-    
     # Create HTML map
     html_content = f'''
 <!DOCTYPE html>
@@ -300,143 +291,93 @@ def create_facilities_map(facilities_df):
             height: 100vh;
             width: 100%;
         }}
-        .filter-panel {{
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            width: 320px;
+        .facility-marker {{
+            font-size: 24px;
+            text-align: center;
+            border-radius: 50%;
             background: white;
-            border: 2px solid #ccc;
+            border: 2px solid white;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }}
+        .facility-popup {{
+            font-size: 14px;
+            max-width: 400px;
+        }}
+        .facility-header {{
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }}
+        .facility-details {{
+            max-height: 300px;
+            overflow-y: auto;
+        }}
+        .facility-item {{
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+            border-radius: 4px;
+        }}
+        .facility-name {{
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }}
+        .facility-info {{
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }}
+        .company-title {{
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            padding: 15px 25px;
             border-radius: 10px;
-            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            border: 2px solid #007bff;
+        }}
+        .stats-overlay {{
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             z-index: 1000;
             font-size: 14px;
-            max-height: 80vh;
-            overflow-y: auto;
+            color: #2c3e50;
+            border: 2px solid #007bff;
         }}
-        .stats-box {{
-            margin-bottom: 20px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #007bff;
-        }}
-        .filter-section {{
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-        }}
-        .btn {{
-            border: none;
-            border-radius: 4px;
-            padding: 6px 12px;
-            cursor: pointer;
-            font-size: 11px;
-            margin-right: 8px;
-        }}
-        .btn-primary {{ background: #007bff; color: white; }}
-        .btn-danger {{ background: #dc3545; color: white; }}
-        .btn-success {{ background: #28a745; color: white; }}
-        .btn-apply {{
-            width: 100%;
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }}
-        .btn-reset {{
-            width: 100%;
-            background: linear-gradient(135deg, #dc3545, #c82333);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 12px;
-            cursor: pointer;
-            font-size: 12px;
-        }}
-        select[multiple] {{
-            width: 100%;
-            border: 2px solid #ccc;
-            border-radius: 6px;
-            padding: 8px;
-            font-size: 12px;
-            background: white;
-        }}
-        .notification {{
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 15px 25px;
-            border-radius: 8px;
-            z-index: 2000;
-            font-weight: bold;
-            font-size: 14px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }}
-        .notification.success {{ background: #28a745; color: white; }}
-        .notification.error {{ background: #dc3545; color: white; }}
-        .notification.info {{ background: #007bff; color: white; }}
     </style>
 </head>
 <body>
     <div id="map"></div>
     
-    <div class="filter-panel">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <h3 style="margin: 0; color: #2c3e50;">🏥 Facilities Map</h3>
-            <button id="toggle-filters" class="btn btn-primary">Hide</button>
-        </div>
-        
-        <div id="filter-content">
-            <div class="stats-box">
-                <div style="font-weight: bold; margin-bottom: 8px; color: #2c3e50;">📊 Overview</div>
-                <div id="stats-content" style="font-size: 12px; color: #666;">
-                    • Total Facilities: <strong>{len(facilities_data):,}</strong><br>
-                    • Cities: <strong>{len(all_cities):,}</strong><br>
-                    • Specializations: <strong>{len(all_specializations):,}</strong>
-                </div>
-            </div>
-            
-            <div class="filter-section">
-                <label style="display: block; margin-bottom: 10px; font-weight: bold; color: #2c3e50;">🏙️ Cities:</label>
-                <div style="margin-bottom: 10px;">
-                    <button id="select-all-cities" class="btn btn-primary">Select All</button>
-                    <button id="clear-cities" class="btn btn-danger">Clear All</button>
-                </div>
-                <select id="city-selector" multiple style="height: 120px;">
-                    {"".join([f'<option value="{city}">{city}</option>' for city in all_cities])}
-                </select>
-            </div>
-            
-            <div class="filter-section">
-                <label style="display: block; margin-bottom: 10px; font-weight: bold; color: #2c3e50;">🩺 Specializations:</label>
-                <div style="margin-bottom: 10px;">
-                    <button id="select-all-specializations" class="btn btn-primary">Select All</button>
-                    <button id="clear-specializations" class="btn btn-danger">Clear All</button>
-                </div>
-                <select id="specialization-selector" multiple style="height: 120px;">
-                    {"".join([f'<option value="{spec}">{spec}</option>' for spec in all_specializations])}
-                </select>
-            </div>
-            
-            <div style="margin-bottom: 20px;">
-                <button id="apply-filters" class="btn-apply">🔄 Apply Filters</button>
-                <button id="reset-filters" class="btn-reset">🔄 Reset All Filters</button>
-            </div>
-            
-            <div style="padding: 15px; background: #e9ecef; border-radius: 8px; font-size: 12px; color: #495057; border-left: 4px solid #6c757d;">
-                <strong>📋 Current Filters:</strong><br>
-                <span id="filter-status">No Filters Applied</span>
-            </div>
-        </div>
+    <!-- Company Title -->
+    <div class="company-title">
+        🏥 Facilities Map
+    </div>
+    
+    <!-- Stats Overlay -->
+    <div class="stats-overlay">
+        <strong>📊 Overview</strong><br>
+        • Total Facilities: <strong>{len(facilities_data):,}</strong><br>
+        • Locations Mapped: <strong>{len(facilities_data):,}</strong>
     </div>
     
     <script>
@@ -446,10 +387,6 @@ def create_facilities_map(facilities_df):
         // Global variables
         let map;
         let allMarkers = [];
-        let currentFilters = {{
-            cities: [],
-            specializations: []
-        }};
         
         // Initialize map
         function initMap() {{
@@ -458,25 +395,15 @@ def create_facilities_map(facilities_df):
                 attribution: '© OpenStreetMap contributors'
             }}).addTo(map);
             
-            // Load initial data
-            loadAllMarkers();
+            // Load all facilities
+            loadAllFacilities();
         }}
         
-        function loadAllMarkers() {{
-            addMarkersToMap(facilitiesData);
-            updateStatistics(facilitiesData);
-        }}
-        
-        function clearAllMarkers() {{
-            allMarkers.forEach(marker => map.removeLayer(marker));
-            allMarkers = [];
-        }}
-        
-        function addMarkersToMap(facilities) {{
-            // Group facilities by location
+        function loadAllFacilities() {{
+            // Group facilities by location to handle multiple facilities at same coordinates
             const facilitiesGrouped = {{}};
-            facilities.forEach(fac => {{
-                const key = fac.latitude.toFixed(3) + ',' + fac.longitude.toFixed(3);
+            facilitiesData.forEach(fac => {{
+                const key = fac.latitude.toFixed(4) + ',' + fac.longitude.toFixed(4);
                 if (!facilitiesGrouped[key]) facilitiesGrouped[key] = [];
                 facilitiesGrouped[key].push(fac);
             }});
@@ -484,189 +411,82 @@ def create_facilities_map(facilities_df):
             // Add facility markers
             Object.entries(facilitiesGrouped).forEach(([key, facs]) => {{
                 const [lat, lon] = key.split(',').map(Number);
-                const radius = Math.min(8 + facs.length * 2, 25);
                 
-                let popupContent = '<div style="font-size: 12px; max-width: 400px;">';
-                popupContent += '<h4 style="margin: 0 0 10px 0; color: #2c3e50; text-align: center;">' + facs.length + ' Facility(ies)</h4>';
-                popupContent += '<div style="max-height: 300px; overflow-y: auto;">';
-                
-                facs.forEach((fac, i) => {{
-                    const bgColor = i % 2 === 0 ? '#f9f9f9' : 'white';
-                    popupContent += '<div style="padding: 8px 5px; margin-bottom: 5px; background: ' + bgColor + '; border-left: 3px solid #007bff;">';
-                    popupContent += '<div style="font-weight: bold; color: #2c3e50;">' + fac.name + '</div>';
-                    popupContent += '<small>ID: ' + fac.id + ' | City: ' + fac.city + '</small><br>';
-                    if (fac.address !== 'N/A') {{
-                        popupContent += '<small>Address: ' + fac.address + '</small><br>';
-                    }}
-                    if (fac.phone !== 'N/A') {{
-                        popupContent += '<small>Phone: ' + fac.phone + '</small><br>';
-                    }}
-                    if (fac.specialization.length > 0) {{
-                        popupContent += '<small>Specializations: ' + fac.specialization.join(', ') + '</small>';
-                    }}
-                    popupContent += '</div>';
+                // Create hospital emoji marker or company logo marker
+                const hospitalIcon = L.divIcon({{
+                    className: 'facility-marker',
+                    html: '<img src="logo.png" style="width:22px;height:22px;" alt="Company Logo"/>',
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 16],
+                    popupAnchor: [0, -20]
                 }});
                 
-                popupContent += '</div></div>';
+                // Create popup content
+                let popupContent = '<div class="facility-popup">';
+                if (facs.length === 1) {{
+                    const fac = facs[0];
+                    popupContent += '<h4 class="facility-header">' + fac.name + '</h4>';
+                    popupContent += '<div class="facility-item">';
+                    popupContent += '<div class="facility-info">';
+                    popupContent += '<strong>ID:</strong> ' + fac.id + '<br>';
+                    popupContent += '<strong>City:</strong> ' + fac.city + '<br>';
+                    if (fac.address !== 'N/A') {{
+                        popupContent += '<strong>Address:</strong> ' + fac.address + '<br>';
+                    }}
+                    if (fac.phone !== 'N/A') {{
+                        popupContent += '<strong>Phone:</strong> ' + fac.phone + '<br>';
+                    }}
+                    if (fac.capacity !== 'N/A') {{
+                        popupContent += '<strong>Capacity:</strong> ' + fac.capacity + '<br>';
+                    }}
+                    if (fac.specialization.length > 0) {{
+                        popupContent += '<strong>Specializations:</strong> ' + fac.specialization.join(', ');
+                    }}
+                    popupContent += '</div></div>';
+                }} else {{
+                    popupContent += '<h4 class="facility-header">' + facs.length + ' Facilities at this Location</h4>';
+                    popupContent += '<div class="facility-details">';
+                    
+                    facs.forEach((fac, i) => {{
+                        popupContent += '<div class="facility-item">';
+                        popupContent += '<div class="facility-name">' + fac.name + '</div>';
+                        popupContent += '<div class="facility-info">';
+                        popupContent += '<strong>ID:</strong> ' + fac.id + ' | <strong>City:</strong> ' + fac.city + '<br>';
+                        if (fac.address !== 'N/A') {{
+                            popupContent += '<strong>Address:</strong> ' + fac.address + '<br>';
+                        }}
+                        if (fac.phone !== 'N/A') {{
+                            popupContent += '<strong>Phone:</strong> ' + fac.phone + '<br>';
+                        }}
+                        if (fac.specialization.length > 0) {{
+                            popupContent += '<strong>Specializations:</strong> ' + fac.specialization.join(', ');
+                        }}
+                        popupContent += '</div></div>';
+                    }});
+                    
+                    popupContent += '</div>';
+                }}
+                popupContent += '</div>';
                 
-                const marker = L.circleMarker([lat, lon], {{
-                    radius: radius,
-                    color: '#007bff',
-                    fillColor: '#007bff',
-                    fillOpacity: 0.7,
-                    weight: 2
+                // Create marker with hospital icon
+                const marker = L.marker([lat, lon], {{
+                    icon: hospitalIcon
                 }}).bindPopup(popupContent);
                 
                 marker.addTo(map);
                 allMarkers.push(marker);
             }});
-        }}
-        
-        function filterFacilities() {{
-            let filtered = [...facilitiesData];
             
-            if (currentFilters.cities.length > 0) {{
-                filtered = filtered.filter(facility => currentFilters.cities.includes(facility.city));
+            // Fit map to show all facilities
+            if (allMarkers.length > 0) {{
+                const group = new L.featureGroup(allMarkers);
+                map.fitBounds(group.getBounds().pad(0.1));
             }}
-            
-            if (currentFilters.specializations.length > 0) {{
-                filtered = filtered.filter(facility => {{
-                    return facility.specialization.some(spec => currentFilters.specializations.includes(spec));
-                }});
-            }}
-            
-            return filtered;
         }}
         
-        function updateStatistics(facilities) {{
-            const cities = new Set(facilities.map(f => f.city));
-            const specializations = new Set();
-            facilities.forEach(f => f.specialization.forEach(s => specializations.add(s)));
-            
-            document.getElementById('stats-content').innerHTML = 
-                '• Facilities Shown: <strong>' + facilities.length.toLocaleString() + '</strong><br>' +
-                '• Cities: <strong>' + cities.size.toLocaleString() + '</strong><br>' +
-                '• Specializations: <strong>' + specializations.size.toLocaleString() + '</strong>';
-        }}
-        
-        function showNotification(message, type) {{
-            const notification = document.createElement('div');
-            notification.className = 'notification ' + type;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {{
-                notification.style.opacity = '0';
-                setTimeout(() => document.body.removeChild(notification), 300);
-            }}, 2500);
-        }}
-        
-        function updateFilterStatus() {{
-            const filters = [];
-            
-            if (currentFilters.cities.length > 0) {{
-                filters.push('Cities: ' + (currentFilters.cities.length <= 3 ? 
-                    currentFilters.cities.join(', ') : 
-                    currentFilters.cities.slice(0, 3).join(', ') + '... (+' + (currentFilters.cities.length - 3) + ' more)'));
-            }}
-            if (currentFilters.specializations.length > 0) {{
-                filters.push('Specializations: ' + (currentFilters.specializations.length <= 2 ? 
-                    currentFilters.specializations.join(', ') : 
-                    currentFilters.specializations.slice(0, 2).join(', ') + '... (+' + (currentFilters.specializations.length - 2) + ' more)'));
-            }}
-            
-            document.getElementById('filter-status').textContent = filters.length > 0 ? filters.join(' | ') : 'No Filters Applied';
-        }}
-        
-        // Event listeners
+        // Initialize map when page loads
         document.addEventListener('DOMContentLoaded', function() {{
             initMap();
-            
-            // Filter controls
-            document.getElementById('city-selector').addEventListener('change', updateFilterStatus);
-            document.getElementById('specialization-selector').addEventListener('change', updateFilterStatus);
-            
-            // Helper buttons
-            document.getElementById('select-all-cities').addEventListener('click', function() {{
-                const selector = document.getElementById('city-selector');
-                for (let i = 0; i < selector.options.length; i++) {{
-                    selector.options[i].selected = true;
-                }}
-                updateFilterStatus();
-            }});
-            
-            document.getElementById('clear-cities').addEventListener('click', function() {{
-                document.getElementById('city-selector').selectedIndex = -1;
-                updateFilterStatus();
-            }});
-            
-            document.getElementById('select-all-specializations').addEventListener('click', function() {{
-                const selector = document.getElementById('specialization-selector');
-                for (let i = 0; i < selector.options.length; i++) {{
-                    selector.options[i].selected = true;
-                }}
-                updateFilterStatus();
-            }});
-            
-            document.getElementById('clear-specializations').addEventListener('click', function() {{
-                document.getElementById('specialization-selector').selectedIndex = -1;
-                updateFilterStatus();
-            }});
-            
-            // Apply filters
-            document.getElementById('apply-filters').addEventListener('click', function() {{
-                const button = this;
-                button.textContent = '🔄 Applying Filters...';
-                button.disabled = true;
-                
-                setTimeout(function() {{
-                    // Update filter state
-                    currentFilters.cities = Array.from(document.getElementById('city-selector').selectedOptions).map(o => o.value);
-                    currentFilters.specializations = Array.from(document.getElementById('specialization-selector').selectedOptions).map(o => o.value);
-                    
-                    // Filter data
-                    const filteredFacilities = filterFacilities();
-                    
-                    // Update map
-                    clearAllMarkers();
-                    addMarkersToMap(filteredFacilities);
-                    updateStatistics(filteredFacilities);
-                    updateFilterStatus();
-                    
-                    showNotification('Filters applied! Showing ' + filteredFacilities.length + ' facilities.', 'success');
-                    
-                    button.textContent = '🔄 Apply Filters';
-                    button.disabled = false;
-                }}, 500);
-            }});
-            
-            // Reset filters
-            document.getElementById('reset-filters').addEventListener('click', function() {{
-                document.getElementById('city-selector').selectedIndex = -1;
-                document.getElementById('specialization-selector').selectedIndex = -1;
-                
-                currentFilters = {{
-                    cities: [],
-                    specializations: []
-                }};
-                
-                clearAllMarkers();
-                loadAllMarkers();
-                updateFilterStatus();
-                showNotification('All filters reset!', 'info');
-            }});
-            
-            // Toggle panel
-            document.getElementById('toggle-filters').addEventListener('click', function() {{
-                const content = document.getElementById('filter-content');
-                if (content.style.display === 'none') {{
-                    content.style.display = 'block';
-                    this.textContent = 'Hide';
-                }} else {{
-                    content.style.display = 'none';
-                    this.textContent = 'Show';
-                }}
-            }});
         }});
     </script>
 </body>

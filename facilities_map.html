@@ -17,156 +17,102 @@
             height: 100vh;
             width: 100%;
         }
-        .filter-panel {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            width: 320px;
+        .facility-marker {
+            font-size: 24px;
+            text-align: center;
+            border-radius: 50%;
             background: white;
-            border: 2px solid #ccc;
+            border: 2px solid white;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .facility-popup {
+            font-size: 14px;
+            max-width: 400px;
+        }
+        .facility-header {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .facility-details {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .facility-item {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+            border-radius: 4px;
+        }
+        .facility-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        .facility-info {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+        .company-title {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            padding: 15px 25px;
             border-radius: 10px;
-            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            border: 2px solid #007bff;
+        }
+        .stats-overlay {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             z-index: 1000;
             font-size: 14px;
-            max-height: 80vh;
-            overflow-y: auto;
+            color: #2c3e50;
+            border: 2px solid #007bff;
         }
-        .stats-box {
-            margin-bottom: 20px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #007bff;
-        }
-        .filter-section {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-        }
-        .btn {
-            border: none;
-            border-radius: 4px;
-            padding: 6px 12px;
-            cursor: pointer;
-            font-size: 11px;
-            margin-right: 8px;
-        }
-        .btn-primary { background: #007bff; color: white; }
-        .btn-danger { background: #dc3545; color: white; }
-        .btn-success { background: #28a745; color: white; }
-        .btn-apply {
-            width: 100%;
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-        .btn-reset {
-            width: 100%;
-            background: linear-gradient(135deg, #dc3545, #c82333);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 12px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-        select[multiple] {
-            width: 100%;
-            border: 2px solid #ccc;
-            border-radius: 6px;
-            padding: 8px;
-            font-size: 12px;
-            background: white;
-        }
-        .notification {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 15px 25px;
-            border-radius: 8px;
-            z-index: 2000;
-            font-weight: bold;
-            font-size: 14px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-        .notification.success { background: #28a745; color: white; }
-        .notification.error { background: #dc3545; color: white; }
-        .notification.info { background: #007bff; color: white; }
     </style>
 </head>
 <body>
     <div id="map"></div>
     
-    <div class="filter-panel">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <h3 style="margin: 0; color: #2c3e50;">🏥 Facilities Map</h3>
-            <button id="toggle-filters" class="btn btn-primary">Hide</button>
-        </div>
-        
-        <div id="filter-content">
-            <div class="stats-box">
-                <div style="font-weight: bold; margin-bottom: 8px; color: #2c3e50;">📊 Overview</div>
-                <div id="stats-content" style="font-size: 12px; color: #666;">
-                    • Total Facilities: <strong>151</strong><br>
-                    • Cities: <strong>0</strong><br>
-                    • Specializations: <strong>0</strong>
-                </div>
-            </div>
-            
-            <div class="filter-section">
-                <label style="display: block; margin-bottom: 10px; font-weight: bold; color: #2c3e50;">🏙️ Cities:</label>
-                <div style="margin-bottom: 10px;">
-                    <button id="select-all-cities" class="btn btn-primary">Select All</button>
-                    <button id="clear-cities" class="btn btn-danger">Clear All</button>
-                </div>
-                <select id="city-selector" multiple style="height: 120px;">
-                    
-                </select>
-            </div>
-            
-            <div class="filter-section">
-                <label style="display: block; margin-bottom: 10px; font-weight: bold; color: #2c3e50;">🩺 Specializations:</label>
-                <div style="margin-bottom: 10px;">
-                    <button id="select-all-specializations" class="btn btn-primary">Select All</button>
-                    <button id="clear-specializations" class="btn btn-danger">Clear All</button>
-                </div>
-                <select id="specialization-selector" multiple style="height: 120px;">
-                    
-                </select>
-            </div>
-            
-            <div style="margin-bottom: 20px;">
-                <button id="apply-filters" class="btn-apply">🔄 Apply Filters</button>
-                <button id="reset-filters" class="btn-reset">🔄 Reset All Filters</button>
-            </div>
-            
-            <div style="padding: 15px; background: #e9ecef; border-radius: 8px; font-size: 12px; color: #495057; border-left: 4px solid #6c757d;">
-                <strong>📋 Current Filters:</strong><br>
-                <span id="filter-status">No Filters Applied</span>
-            </div>
-        </div>
+    <!-- Company Title -->
+    <div class="company-title">
+        🏥 Facilities Map
+    </div>
+    
+    <!-- Stats Overlay -->
+    <div class="stats-overlay">
+        <strong>📊 Overview</strong><br>
+        • Total Facilities: <strong>151</strong><br>
+        • Locations Mapped: <strong>151</strong>
     </div>
     
     <script>
         // Embedded data
-        const facilitiesData = [{"id": "6", "name": "Clínica Sagrada Familia", "latitude": 41.4008, "longitude": 2.13459, "address": "Carrer de Torras i Pujalt, 1, 08022", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "7", "name": "Hospital de Barcelona", "latitude": 41.39, "longitude": 2.12987, "address": "Av. Diagonal, 660, 08034", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "8", "name": "Clínica Nostra Senyora del Remei", "latitude": 41.4098, "longitude": 2.15967, "address": "C/ de l'Escorial, 148, 08024", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "9", "name": "Clínica Mi Tres Torres", "latitude": 41.3994, "longitude": 2.12895, "address": "Carrer del Dr. Roux, 76, 08017", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "10", "name": "La Vostre Llar Reig", "latitude": 41.6821, "longitude": 2.28867, "address": "Rda. del Carril, 78, 08530, La Garriga", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "11", "name": "La Vostre Llar Mataró", "latitude": 41.5279, "longitude": 2.43406, "address": "Carrer de Tordera, 8, 08302, Mataró", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "12", "name": "Hospital El Pilar", "latitude": 41.401, "longitude": 2.14811, "address": "C/ de Balmes, 271, 08006", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "13", "name": "Centro Médico Teknon", "latitude": 41.4073, "longitude": 2.12739, "address": "Carrer de Vilana, 12, 08022", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "14", "name": "HLA Clínica Internacional Barcelona", "latitude": 41.4014, "longitude": 2.12538, "address": "Carrer d'Anglí, 38, 08017", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "15", "name": "Hospital Quirónsalud Barcelona", "latitude": 41.4159, "longitude": 2.13856, "address": "Plaça d'Alfonso Comín, 5, 08023", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "16", "name": "Clínica Sant Antoni", "latitude": 41.3562, "longitude": 2.14331, "address": "C/ de Sant Eloi, 6, 8, 08038", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "17", "name": "Fundació Puigvert", "latitude": 41.413, "longitude": 2.17248, "address": "C. de Cartagena, 340, 350, 08025", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "18", "name": "Hospital HM Nens", "latitude": 41.3975, "longitude": 2.17378, "address": "C/ del Consell de Cent, 437, 08009", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "19", "name": "Hospital HM Nou Delfos", "latitude": 41.4135, "longitude": 2.1425, "address": "Av. de Vallcarca, 151, 08023", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "20", "name": "Hospital HM Sant Jordi", "latitude": 41.4368, "longitude": 2.19285, "address": "Plaça de l'Estació, 12, 08030", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "21", "name": "Uros Associats | Clínica Sagrada Família", "latitude": 41.4001, "longitude": 2.13442, "address": "Carrer de Torras i Pujalt, 11, Edifici Consultoris, Despatx 2.9", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "22", "name": "Uros Associats | Teknon", "latitude": 41.4058, "longitude": 2.12715, "address": "Carrer de la Marquesa de Vilallonga, 12, Edifici Marquesa, Consultori, 13", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "23", "name": "Hospital Universitari Dexeus", "latitude": 41.3851, "longitude": 2.12568, "address": "Carrer de Sabino Arana, 19 Ed", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "24", "name": "Instituto Guttmann", "latitude": 41.4787, "longitude": 2.23695, "address": "Camí de Can Ruti, s/n, 08916, Badalona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "25", "name": "Hospital Universitario de Torrejón", "latitude": 41.4787, "longitude": -3.43526, "address": "C. Mateo Inurria, 28850 Torrejón de Ardoz", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "26", "name": "🏅 Turno Garantizado", "latitude": 41.3874, "longitude": 2.1686, "address": "Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "27", "name": "🚨 Turno Urgente", "latitude": 41.3874, "longitude": 2.1686, "address": "Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "28", "name": "🚨 Turno Urgente", "latitude": 40.4149, "longitude": -3.69791, "address": "Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "29", "name": "Hospital Esperit Sant", "latitude": 41.4379, "longitude": 2.21324, "address": "Avinguda Mossèn Josep Pons i Rabadà, s/n, 08923 Santa Coloma de Gramenet", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "30", "name": "Clínica CEMTRO", "latitude": 40.494, "longitude": -3.71705, "address": "Av. del Ventisquero de la Condesa, 42, Fuencarral-El Pardo, 28035 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "31", "name": "Mutua Terrassa", "latitude": 41.5637, "longitude": 2.01712, "address": "Plaça del Doctor Robert, 5, 08221 Terrassa", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "33", "name": "Centro en Madrid", "latitude": 40.4149, "longitude": -3.69791, "address": "Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "43", "name": "Turnos de verano", "latitude": 41.387, "longitude": 2.169, "address": "Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "44", "name": "Clinica Antiaging", "latitude": 41.4, "longitude": 2.135, "address": "Ronda del General Mitre, 84, Sarrià-Sant Gervasi, 08021 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "45", "name": "Instituto Oftalmología Castanera", "latitude": 41.4, "longitude": 2.155, "address": "Via Augusta 20, 2 Gracia 08006", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "46", "name": "Casal de Curació", "latitude": 41.501, "longitude": 2.387, "address": "Casal de Curació, C. de Maria Vidal, 48, 08340 Vilassar de Mar, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "47", "name": "Hospital Los Madroños", "latitude": 40.399, "longitude": -3.999, "address": "M-501, Km 17, 900, 28690 Brunete, Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "49", "name": "Clinica ServiDigest", "latitude": 41.403, "longitude": 2.144, "address": "C/ de Balmes, 334, Sarrià-Sant Gervasi, 08006 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "50", "name": "PrevenJobs Terrassa", "latitude": 41.571, "longitude": 2.01, "address": "Pg. de les Lletres, nº 11, 08221 Terrassa, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "51", "name": "Clínica Galatea", "latitude": 41.411, "longitude": 2.114, "address": "Carrer de Palafolls, 15, Sarrià-Sant Gervasi, 08017 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "52", "name": "Clínica Eática", "latitude": 41.404, "longitude": 2.122, "address": "Carrer d'Anglí, 64, Distrito de Sarrià-Sant Gervasi, 08017 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "53", "name": "Hospital de día MUTUAM Güell", "latitude": 41.412, "longitude": 2.157, "address": "C. de la Mare de Déu de la Salut, 49, Gràcia, 08024 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "54", "name": "Centro Assistencial Mutuam Collserola", "latitude": 41.435, "longitude": 2.147, "address": "Pg. de la Vall d'Hebron, 159, 169, Horta-Guinardó, 08035 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "55", "name": "Residencia Molí-Via Favència Mutuam", "latitude": 41.446, "longitude": 2.182, "address": "Carrer del Molí, 67, Nou Barris, 08016 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "56", "name": "HLA Hospital Universitario Moncloa", "latitude": 40.433, "longitude": -3.734, "address": " Av. de Valladolid, 83, Moncloa - Aravaca, 28008 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "57", "name": "Clinica Lluria ", "latitude": 41.393, "longitude": 2.16, "address": "Ptge. de Mercader, 14, L'Eixample, 08008 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "58", "name": "Hospital Universitario San Rafael", "latitude": 40.453, "longitude": -3.682, "address": "C. de Serrano, 199, Chamartín, 28016 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "59", "name": "Hospital Quirónsalud Badalona", "latitude": 41.462, "longitude": 2.251, "address": "Carrer de la Seu d'Urgell, 77, 08911 Badalona, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "60", "name": "Fundación Hospitalarias Benito Menni - Complejo Assist.", "latitude": 40.157, "longitude": -3.619, "address": "C. Jardines, 1, 28350 Ciempozuelos, Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "62", "name": "Centre Sanitari Can Mora", "latitude": 41.468, "longitude": 2.082, "address": "Carrer de Sant Jordi, 37, 08172 Sant Cugat del Vallès, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "63", "name": "Diaverum IHB", "latitude": 41.379, "longitude": 2.119, "address": "C/ d'Arístides Maillol, 15, Les Corts, 08028 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "64", "name": "Diaverum Badalona", "latitude": 41.46, "longitude": 2.255, "address": "Carrer de la Ceràmica, 13, 08915 Badalona, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "65", "name": "Clinica San Vicente", "latitude": 40.372, "longitude": -3.727, "address": "C. Cerilleras, 7A, Carabanchel, 28054 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "66", "name": "Fundación Instituto San José", "latitude": 40.363, "longitude": -3.772, "address": "Avenida de la Hospitalidad s/n 28054", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "67", "name": "Hospital Quirónsalud Valle del Henares", "latitude": 40.465, "longitude": -3.441, "address": "Av. de la Constitución, 249, 28850 Torrejón de Ardoz, Madrid, España", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "68", "name": "Hospital Ruber Juan Bravo 49", "latitude": 40.438, "longitude": -3.677, "address": " Calle de Juan Bravo, 49, Salamanca, 28006 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "69", "name": "Hospital Sant Jaume de Calella", "latitude": 41.615, "longitude": 2.657, "address": "Carrer de Sant Jaume, 209, 217, 08370 Calella, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "70", "name": "Residencia y Centro de Día Rubí", "latitude": 41.501, "longitude": 2.035, "address": "C/ Lepant, 31-33 08191, Rubí ", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "72", "name": "Konic Health", "latitude": 41.407, "longitude": 2.134, "address": "Pl. de la Bonanova", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "74", "name": "Residencia y Centro de Día MUTUAM Sant Cugat", "latitude": 41.472, "longitude": 2.076, "address": "Carrer de Santa Rosa, 1, Sant Cugat del Vallès, 08172", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "75", "name": "Hospital Comarcal de l'Alt Penedès", "latitude": 41.359, "longitude": 1.706, "address": "Carrer de l'Espirall, s/n, 08720 Vilafranca del Penedès, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "76", "name": "Hospital Sant Camil", "latitude": 41.267, "longitude": 1.767, "address": "Rda. de Sant Camil, s/n, 08810 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "77", "name": "Residencia y Centro de Día MUTUAM Jaume Nualart", "latitude": 41.354, "longitude": 2.066, "address": "Carrer de l'Anoia, 8, 14, 08940 Cornellà de Llobregat, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "78", "name": "Grupo Vivo - UNIDAD MOVIL PET TAC- Les Corts", "latitude": 41.386, "longitude": 2.124, "address": "Carrer de Sabino Arana, 1, Les Corts, 08028 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "79", "name": "Hospital Universitario Quirónsalud Madrid", "latitude": 40.441, "longitude": -3.813, "address": " C. Diego de Velázquez, 1, 28223 Pozuelo de Alarcón, Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "80", "name": "Hospital Quirónsalud Sur", "latitude": 40.347, "longitude": -3.83, "address": "C. Estambul, 30, 28922 Alcorcón, Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "81", "name": "Hospital Universitario La Luz - Quirónsalud", "latitude": 40.443, "longitude": -3.705, "address": "C. del Maestro Ángel Llorca, 8, Chamberí, 28003 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "82", "name": "Grupo Vivo Salesas - Madrid ", "latitude": 40.425, "longitude": -3.692, "address": "Calle del Almirante, 13,  28004 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "83", "name": "Residència Sant Joan de Déu", "latitude": 41.482, "longitude": 1.923, "address": "Av. Camí Fondo, 22, 08760 Martorell, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "84", "name": "TMEH - Teknon", "latitude": 41.401, "longitude": 2.135, "address": "Carrer de Vilana, 12, Sarrià-Sant Gervasi, 08022 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "85", "name": "Grupo Vivo Pio XII - Madrid", "latitude": 40.466, "longitude": -3.674, "address": " Cta. del Sagrado Corazón, 4, Chamartín, 28016 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "86", "name": "Laboratorio Echevarne Mataró", "latitude": 41.54, "longitude": 2.444, "address": "Carrer de Sant Antoni, 11, 08301 Mataró, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "87", "name": "Laboratorio Echevarne Granollers", "latitude": 41.607, "longitude": 2.288, "address": "Carrer de Girona, 66, 08402 Granollers, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "88", "name": "Laboratorio Echevarne Terrassa", "latitude": 41.564, "longitude": 2.012, "address": "Carrer de Galileu, 325, 08224 Terrassa, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "89", "name": "Laboratorio Echevarne Sant Cugat", "latitude": 41.475, "longitude": 2.087, "address": "Carrer de Martorell, 20, 22 Local 2, 08172 Sant Cugat del Vallès, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "90", "name": "Laboratorio Echevarne Barcelona", "latitude": 41.396, "longitude": 2.164, "address": "Carrer de Provença, 312, L'Eixample, 08037 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "92", "name": "Laboratorio Echevarne Castelldefels", "latitude": 41.283, "longitude": 1.977, "address": "Av. de la Constitució, 185, 187, 08860 Castelldefels, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "94", "name": "Diaverum - Virgen de Montserrat", "latitude": 41.443, "longitude": 2.188, "address": "C/ Grau de Sant Andreu, 467, 08030", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "95", "name": "Diaverum Palau", "latitude": 41.41, "longitude": 2.173, "address": "C/ Sant Antonio Maria Claret, 135", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "96", "name": "Diaverum - Rotellar", "latitude": 41.427, "longitude": 2.184, "address": "Carrer de Concepción Arenal, 151, Sant Andreu, 08027 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "97", "name": " Hospital Municipal de Badalona", "latitude": 41.451, "longitude": 2.248, "address": "Via Augusta, 9-13, 08911 Badalona, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "98", "name": " Centre Sociosanitari El Carme - Badalona", "latitude": 41.469, "longitude": 2.229, "address": "Camí de Sant Jeroni de la Murtra, 60, 08917 Badalona, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "99", "name": "Hospital de Blanes", "latitude": 41.688, "longitude": 2.802, "address": "Carrer Accés Cala Sant Francesc, 5, 17300 Blanes, Girona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "100", "name": "Hospital Ribera Povisa", "latitude": 42.224, "longitude": -8.72, "address": "Rúa de Salamanca, 5, Freixeiro, 36211 Vigo, Pontevedra", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "101", "name": "Consorci Sanitari Integral", "latitude": 41.375, "longitude": 2.106, "address": "Av. Josep Molins, 29, 08906 L'Hospitalet de Llobregat, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "102", "name": "🚨 Turno Urgente - Maresme ", "latitude": 41.538, "longitude": 2.445, "address": "Maresme", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "103", "name": "🚨 Turno Urgente - Vallès", "latitude": 41.468, "longitude": 2.078, "address": "Vallés", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "105", "name": "Fundación Hospitalarias Madrid- Hospital General", "latitude": 40.419, "longitude": -3.668, "address": "C. del Dr. Esquerdo, 83, Retiro, 28007 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "106", "name": "Hospital de Mataró", "latitude": 41.556, "longitude": 2.43, "address": "Consorcio Sanitario del Maresme - Hospital de Mataró", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "107", "name": "Hospital Juan Cardona", "latitude": 43.481, "longitude": -8.203, "address": "Rúa Pardo Bazán, s/n, 15404 Ferrol, A Coruña", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "109", "name": "Centro de Oftalmología Barraquer ", "latitude": 41.4, "longitude": 2.141, "address": " C/ de Muntaner, 314, Sarrià-Sant Gervasi, 08021 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "110", "name": "FMC Dialcentro", "latitude": 40.416, "longitude": -3.672, "address": "c/ Pilar Millán Astray,2. 28009", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "111", "name": "FMC Alcobendas", "latitude": 40.0, "longitude": -3.642, "address": " Av. de Camilo José Cela, 56, 28108 Alcobendas, Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "112", "name": "Instituto Clavel Chamartín", "latitude": 40.448, "longitude": -3.687, "address": "C. de Joaquín Costa, 28, primera planta, Chamartín, 28002 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "113", "name": "Diaverum Baix Llobregat", "latitude": 41.348, "longitude": 2.105, "address": "C/ Motors, 392, planta baja  08908 Hospitalet de Llobregat", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "114", "name": "Diaverum Nephros", "latitude": 41.432, "longitude": 2.145, "address": "C/ Harmonía, 7 08035 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "115", "name": " 🚨 Turno Urgente - Blanes", "latitude": 41.676, "longitude": 2.787, "address": "Blanes", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "116", "name": "Hospital Ntra Sra del Rosario", "latitude": 40.432, "longitude": -3.68, "address": "C. del Príncipe de Vergara, 53, Salamanca, 28006 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "117", "name": "Hospital Ribera Virgen de la Caridad", "latitude": 37.615, "longitude": -0.988, "address": "C. Jorge Juan, 30, 30204 Cartagena, Murcia", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "120", "name": "Hospital Universitari Sagrat Cor", "latitude": 41.387, "longitude": 2.148, "address": " Carrer de Viladomat, 288, L'Eixample, 08029 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "122", "name": "Parc Sanitari Pere Virgili", "latitude": 41.414, "longitude": 2.142, "address": "Carrer d'Esteve Terradas, 30, Gràcia, 08023 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "125", "name": "Hospital de Viladecans", "latitude": 41.32, "longitude": 2.025, "address": "Avinguda del Mil·lenari, 08840 Viladecans, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "126", "name": "Residència i Centre de Dia Gavà", "latitude": 41.305, "longitude": 2.004, "address": "Carrer de la Concòrdia, 24, 08850 Gavà, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "127", "name": "Clínica Corachan", "latitude": 41.394, "longitude": 2.13, "address": "Plaza Dr, Pl. de Manuel Corachán, 4, Distrito de Sarrià-Sant Gervasi, 08017 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "128", "name": "Hestia Palau", "latitude": 41.413, "longitude": 2.174, "address": "Carrer de Sant Antoni Maria Claret, 135, Horta-Guinardó, 08025 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "130", "name": "Hestia Duran i Reynals", "latitude": 41.353, "longitude": 2.122, "address": "Avinguda de la Granvia de l’Hospitalet, 199, 08908 L'Hospitalet de Llobregat, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "131", "name": "CAP Nova Lloreda 8", "latitude": 41.451, "longitude": 2.233, "address": "Av. de Catalunya, 62, 64, 08917 Badalona, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "132", "name": "CAP Progrés-Raval", "latitude": 41.45, "longitude": 2.245, "address": "Carrer del General Weyler, 44, 08912 Badalona, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "133", "name": "IOA Madrid - Miranza", "latitude": 40.439, "longitude": 3.71, "address": "C. de Galileo, 104, y 110, Chamberí, 28003 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "134", "name": "IM Clinic", "latitude": 41.48, "longitude": 2.08, "address": " Carrer de Victor Hugo, 24, 08174 Sant Cugat del Vallès, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "135", "name": "CST - Hospital Terrassa", "latitude": 41.557, "longitude": 2.053, "address": "Carr. de Torrebonica, s/n, 08227 Terrassa, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "136", "name": "CAP Apenins-Montigalà", "latitude": 41.45, "longitude": 2.247, "address": "Carrer Apenins, s/n, 08917 Badalona, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "137", "name": "Hospital Sant Antoni Abat", "latitude": 41.225, "longitude": 1.725, "address": "Carrer de Sant Josep, 21, 23, 08800 Vilanova i la Geltrú, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "138", "name": "CAP Montgat", "latitude": 41.469, "longitude": 2.281, "address": "Passatge Sant Antoni Maria Claret, s/n, 08390 Montgat, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "142", "name": "CAP Morera Pomar", "latitude": 41.449, "longitude": 2.232, "address": "Carrer de Pere III, 1, 08915 Badalona, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "143", "name": "CAP Doctor Martí i Julià", "latitude": 41.348, "longitude": 2.078, "address": "Av. del Baix Llobregat, 17, 08940 Cornellà de Llobregat, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "144", "name": "Grupo Vivo - Clínica Médica Los Belgas", "latitude": 40.635, "longitude": -4.005, "address": "C. Pereda, 1-3, 28400 Collado Villalba, Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "145", "name": "Hospital Clínic de Barcelona", "latitude": 41.386, "longitude": 2.151, "address": "Carrer de Villarroel, 170, L'Eixample, 08036 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "147", "name": "Fresenius Sant Boi", "latitude": 41.331, "longitude": 2.041, "address": "Carretera Santa Creu de Calafell, 49A", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "148", "name": "Fresenius  Terrassa", "latitude": 41.55, "longitude": 2.022, "address": "Av. de Can Jofresa, 6, 08223 Terrassa, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "150", "name": "CMD SALUD CALIDAD INTEGRAL S.L.", "latitude": 41.328, "longitude": 2.125, "address": "Carreter E, Zona Franca, 40 Zona Franca- port Sants-Montjuïc 08040", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "152", "name": "CQM Clinic Maresme SL", "latitude": 41.536, "longitude": 2.444, "address": "Carrer Lepanto 13-21, 08301 Mataró ", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "153", "name": "Clínica López Ibor", "latitude": 40.433, "longitude": -3.722, "address": "Calle del Dr. Juan José López Ibor, 2, Moncloa - Aravaca, 28035 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "154", "name": "Residencia Bouco Aravaca", "latitude": 40.447, "longitude": -3.78, "address": "Av. del Talgo, 53, Moncloa - Aravaca, 28023 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "155", "name": "Residència i Centre de Dia Bouco Ciutat Diagonal", "latitude": 41.384, "longitude": 2.086, "address": "Av. la Miranda, 8, 16, 08950 Esplugues de Llobregat, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "156", "name": "LANTUS Residencias", "latitude": 41.453, "longitude": 2.204, "address": "Mare de Déu dels Àngels, 2-4, 08921 Sta. Coloma de Gramenet", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "157", "name": "CAP Tiana", "latitude": 41.483, "longitude": 2.268, "address": "Carrer Franci 9 (Casa de la Punxa), 08391 Tiana", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "159", "name": "Residencia Hestia Esquerdo", "latitude": 40.382, "longitude": -3.758, "address": "Avenida de los Poblados, 70, 28044 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "160", "name": "Clinica Diagonal", "latitude": 41.372, "longitude": 2.083, "address": "C/Sant Mateu 24-26", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "161", "name": "COLISEE Sant Jordi", "latitude": 41.428, "longitude": 2.144, "address": "Pg. de la Vall d'Hebron, 135, 145, Horta-Guinardó, 08035 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "162", "name": "COLISEE Valldoreix", "latitude": 41.465, "longitude": 2.066, "address": "Rambla Mossèn Jacint Verdaguer, 199, 08197 Valldoreix, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "163", "name": "Fundació Hospitalàries Barcelona", "latitude": 41.429, "longitude": 2.146, "address": "PASSEIG VALL D'HEBRON 107-117", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "164", "name": "Fundació Hospitalàries Martorell", "latitude": 41.48, "longitude": 1.923, "address": "Av. Comte Llobregat, 117 · 08760 · Martorell", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "165", "name": "Hospital Ruber Juan Bravo 39", "latitude": 40.438, "longitude": -3.677, "address": " Calle de Juan Bravo, 39, Salamanca, 28006 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "175", "name": "Activita Centre Mèdic", "latitude": 41.61, "longitude": 2.289, "address": "Carrer de Joan Prim, 136, 146, 08402 Granollers, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "177", "name": "Start Madrid", "latitude": 40.43, "longitude": -3.69, "address": "C. José Abascal, 56, floor 2, 28003 Madrid, Spain.", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "178", "name": "PreverSalud Madrid", "latitude": 40.474, "longitude": -3.712, "address": "C. Islas Chafarinas, 21C, Fuencarral-El Pardo, 28035 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "179", "name": "PreverSalud Barcelona", "latitude": 41.387, "longitude": 2.701, "address": "Calle Por definir", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "180", "name": "Hospital de Figueres", "latitude": 42.265, "longitude": 2.964, "address": "Ronda del Rector Arolas, s/n, 17600 Figueres, Girona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "181", "name": "Turó Park International Healthcare", "latitude": 41.395, "longitude": 2.136, "address": "Plaza Sant Gregori Taumaturg nº5, 08021, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "182", "name": "Start Barcelona", "latitude": 41.414, "longitude": 2.143, "address": "Av. de Vallcarca, 151, Gràcia, 08023 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "184", "name": "Residència Bon Repòs", "latitude": 41.404, "longitude": 2.164, "address": " Pg. de St. Joan, 156, Gràcia, 08037 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "185", "name": "Fresenius Barcelona Glòries", "latitude": 41.405, "longitude": 2.184, "address": "Carrer del Consell de Cent, 581, L'Eixample, 08013 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "190", "name": "Sant Andreu Salut", "latitude": 41.725, "longitude": 1.829, "address": "Plaça de l'Hospital, 08241 Manresa, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "203", "name": "Unidad de Terapia Ocupacional El Bosque SL ", "latitude": 40.42, "longitude": -3.66, "address": " C. de los Peñascales, 14, Salamanca, 28028 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "208", "name": "Hestia La Robleda", "latitude": 42.931, "longitude": -8.126, "address": "Lugar del Santiso, S/N, 15821 Santiso, A Coruña", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "209", "name": "Hospital Psiquiátrico Hestia San José", "latitude": 42.228, "longitude": -8.745, "address": "Rúa Tomás A. Alonso, 89, Coia, 36208 Vigo, Pontevedra", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "213", "name": "Fresenius Medical Care Granollers", "latitude": 41.608, "longitude": 2.286, "address": "Carrer de Manel Cornella 37, 08402 Granollers, Barcelona, España", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "214", "name": "FUNDACIÓ BARCELONABETA BRAIN RESEARCH CENTER", "latitude": 41.389, "longitude": 2.19, "address": "C/Wellington, 30 08005 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "217", "name": "Centro Asistencial Solimat Getafe", "latitude": 40.304, "longitude": -3.694, "address": "Calle Irene Joliot Curie 2, 28906 Getafe", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "218", "name": "Centro Asistencial Solimat Illescas", "latitude": 40.141, "longitude": -3.838, "address": "Carretera Ugena 2, Illescas 45200, Toledo", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "223", "name": "Centro en Granollers", "latitude": 41.607, "longitude": 2.287, "address": "Carrer de Barcelona 65", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "224", "name": "Centro en Blanes", "latitude": 41.675, "longitude": 2.779, "address": "Ctra. Malgrat 17300 Blanes, Girona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "225", "name": "Centro en Barcelona", "latitude": 41.389, "longitude": 2.17, "address": "Paseo de gracia, 6", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "228", "name": "MC Mutual", "latitude": 41.401, "longitude": 2.141, "address": "Carrer Copernic 58, Barcelona 08006", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "230", "name": "Hospital de Majadahonda", "latitude": 40.451, "longitude": -3.85, "address": "Carretera de Pozuelo 61, Majadahonda", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}];
+        const facilitiesData = [{"id": "6", "name": "Clínica Sagrada Familia", "latitude": 41.4008, "longitude": 2.13459, "address": "Carrer de Torras i Pujalt, 1, 08022", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "7", "name": "Hospital de Barcelona", "latitude": 41.39, "longitude": 2.12987, "address": "Av. Diagonal, 660, 08034", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "8", "name": "Clínica Nostra Senyora del Remei", "latitude": 41.4098, "longitude": 2.15967, "address": "C/ de l'Escorial, 148, 08024", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "9", "name": "Clínica Mi Tres Torres", "latitude": 41.3994, "longitude": 2.12895, "address": "Carrer del Dr. Roux, 76, 08017", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "10", "name": "La Vostre Llar Reig", "latitude": 41.6821, "longitude": 2.28867, "address": "Rda. del Carril, 78, 08530, La Garriga", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "11", "name": "La Vostre Llar Mataró", "latitude": 41.5279, "longitude": 2.43406, "address": "Carrer de Tordera, 8, 08302, Mataró", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "12", "name": "Hospital El Pilar", "latitude": 41.401, "longitude": 2.14811, "address": "C/ de Balmes, 271, 08006", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "13", "name": "Centro Médico Teknon", "latitude": 41.4073, "longitude": 2.12739, "address": "Carrer de Vilana, 12, 08022", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "14", "name": "HLA Clínica Internacional Barcelona", "latitude": 41.4014, "longitude": 2.12538, "address": "Carrer d'Anglí, 38, 08017", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "15", "name": "Hospital Quirónsalud Barcelona", "latitude": 41.4159, "longitude": 2.13856, "address": "Plaça d'Alfonso Comín, 5, 08023", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "16", "name": "Clínica Sant Antoni", "latitude": 41.3562, "longitude": 2.14331, "address": "C/ de Sant Eloi, 6, 8, 08038", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "17", "name": "Fundació Puigvert", "latitude": 41.413, "longitude": 2.17248, "address": "C. de Cartagena, 340, 350, 08025", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "18", "name": "Hospital HM Nens", "latitude": 41.3975, "longitude": 2.17378, "address": "C/ del Consell de Cent, 437, 08009", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "19", "name": "Hospital HM Nou Delfos", "latitude": 41.4135, "longitude": 2.1425, "address": "Av. de Vallcarca, 151, 08023", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "20", "name": "Hospital HM Sant Jordi", "latitude": 41.4368, "longitude": 2.19285, "address": "Plaça de l'Estació, 12, 08030", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "21", "name": "Uros Associats | Clínica Sagrada Família", "latitude": 41.4001, "longitude": 2.13442, "address": "Carrer de Torras i Pujalt, 11, Edifici Consultoris, Despatx 2.9", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "22", "name": "Uros Associats | Teknon", "latitude": 41.4058, "longitude": 2.12715, "address": "Carrer de la Marquesa de Vilallonga, 12, Edifici Marquesa, Consultori, 13", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "23", "name": "Hospital Universitari Dexeus", "latitude": 41.3851, "longitude": 2.12568, "address": "Carrer de Sabino Arana, 19 Ed", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "24", "name": "Instituto Guttmann", "latitude": 41.4787, "longitude": 2.23695, "address": "Camí de Can Ruti, s/n, 08916, Badalona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "25", "name": "Hospital Universitario de Torrejón", "latitude": 41.4787, "longitude": -3.43526, "address": "C. Mateo Inurria, 28850 Torrejón de Ardoz", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "26", "name": "🏅 Turno Garantizado", "latitude": 41.3874, "longitude": 2.1686, "address": "Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "27", "name": "🚨 Turno Urgente", "latitude": 41.3874, "longitude": 2.1686, "address": "Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "28", "name": "🚨 Turno Urgente", "latitude": 40.4149, "longitude": -3.69791, "address": "Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "29", "name": "Hospital Esperit Sant", "latitude": 41.4379, "longitude": 2.21324, "address": "Avinguda Mossèn Josep Pons i Rabadà, s/n, 08923 Santa Coloma de Gramenet", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "30", "name": "Clínica CEMTRO", "latitude": 40.494, "longitude": -3.71705, "address": "Av. del Ventisquero de la Condesa, 42, Fuencarral-El Pardo, 28035 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "31", "name": "Mutua Terrassa", "latitude": 41.5637, "longitude": 2.01712, "address": "Plaça del Doctor Robert, 5, 08221 Terrassa", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "33", "name": "Centro en Madrid", "latitude": 40.4149, "longitude": -3.69791, "address": "Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "43", "name": "Turnos de verano", "latitude": 41.387, "longitude": 2.169, "address": "Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "44", "name": "Clinica Antiaging", "latitude": 41.4, "longitude": 2.135, "address": "Ronda del General Mitre, 84, Sarrià-Sant Gervasi, 08021 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "45", "name": "Instituto Oftalmología Castanera", "latitude": 41.4, "longitude": 2.155, "address": "Via Augusta 20, 2 Gracia 08006", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "46", "name": "Casal de Curació", "latitude": 41.501, "longitude": 2.387, "address": "Casal de Curació, C. de Maria Vidal, 48, 08340 Vilassar de Mar, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "47", "name": "Hospital Los Madroños", "latitude": 40.399, "longitude": -3.999, "address": "M-501, Km 17, 900, 28690 Brunete, Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "49", "name": "Clinica ServiDigest", "latitude": 41.403, "longitude": 2.144, "address": "C/ de Balmes, 334, Sarrià-Sant Gervasi, 08006 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "50", "name": "PrevenJobs Terrassa", "latitude": 41.571, "longitude": 2.01, "address": "Pg. de les Lletres, nº 11, 08221 Terrassa, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "51", "name": "Clínica Galatea", "latitude": 41.411, "longitude": 2.114, "address": "Carrer de Palafolls, 15, Sarrià-Sant Gervasi, 08017 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "52", "name": "Clínica Eática", "latitude": 41.404, "longitude": 2.122, "address": "Carrer d'Anglí, 64, Distrito de Sarrià-Sant Gervasi, 08017 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "53", "name": "Hospital de día MUTUAM Güell", "latitude": 41.412, "longitude": 2.157, "address": "C. de la Mare de Déu de la Salut, 49, Gràcia, 08024 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "54", "name": "Centro Assistencial Mutuam Collserola", "latitude": 41.435, "longitude": 2.147, "address": "Pg. de la Vall d'Hebron, 159, 169, Horta-Guinardó, 08035 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "55", "name": "Residencia Molí-Via Favència Mutuam", "latitude": 41.446, "longitude": 2.182, "address": "Carrer del Molí, 67, Nou Barris, 08016 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "56", "name": "HLA Hospital Universitario Moncloa", "latitude": 40.433, "longitude": -3.734, "address": " Av. de Valladolid, 83, Moncloa - Aravaca, 28008 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "57", "name": "Clinica Lluria ", "latitude": 41.393, "longitude": 2.16, "address": "Ptge. de Mercader, 14, L'Eixample, 08008 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "58", "name": "Hospital Universitario San Rafael", "latitude": 40.453, "longitude": -3.682, "address": "C. de Serrano, 199, Chamartín, 28016 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "59", "name": "Hospital Quirónsalud Badalona", "latitude": 41.462, "longitude": 2.251, "address": "Carrer de la Seu d'Urgell, 77, 08911 Badalona, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "60", "name": "Fundación Hospitalarias Benito Menni - Complejo Assist.", "latitude": 40.157, "longitude": -3.619, "address": "C. Jardines, 1, 28350 Ciempozuelos, Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "62", "name": "Centre Sanitari Can Mora", "latitude": 41.468, "longitude": 2.082, "address": "Carrer de Sant Jordi, 37, 08172 Sant Cugat del Vallès, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "63", "name": "Diaverum IHB", "latitude": 41.379, "longitude": 2.119, "address": "C/ d'Arístides Maillol, 15, Les Corts, 08028 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "64", "name": "Diaverum Badalona", "latitude": 41.46, "longitude": 2.255, "address": "Carrer de la Ceràmica, 13, 08915 Badalona, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "65", "name": "Clinica San Vicente", "latitude": 40.372, "longitude": -3.727, "address": "C. Cerilleras, 7A, Carabanchel, 28054 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "66", "name": "Fundación Instituto San José", "latitude": 40.363, "longitude": -3.772, "address": "Avenida de la Hospitalidad s/n 28054", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "67", "name": "Hospital Quirónsalud Valle del Henares", "latitude": 40.465, "longitude": -3.441, "address": "Av. de la Constitución, 249, 28850 Torrejón de Ardoz, Madrid, España", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "68", "name": "Hospital Ruber Juan Bravo 49", "latitude": 40.438, "longitude": -3.677, "address": " Calle de Juan Bravo, 49, Salamanca, 28006 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "69", "name": "Hospital Sant Jaume de Calella", "latitude": 41.615, "longitude": 2.657, "address": "Carrer de Sant Jaume, 209, 217, 08370 Calella, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "70", "name": "Residencia y Centro de Día Rubí", "latitude": 41.501, "longitude": 2.035, "address": "C/ Lepant, 31-33 08191, Rubí ", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "72", "name": "Konic Health", "latitude": 41.407, "longitude": 2.134, "address": "Pl. de la Bonanova", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "74", "name": "Residencia y Centro de Día MUTUAM Sant Cugat", "latitude": 41.472, "longitude": 2.076, "address": "Carrer de Santa Rosa, 1, Sant Cugat del Vallès, 08172", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "75", "name": "Hospital Comarcal de l'Alt Penedès", "latitude": 41.359, "longitude": 1.706, "address": "Carrer de l'Espirall, s/n, 08720 Vilafranca del Penedès, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "76", "name": "Hospital Sant Camil", "latitude": 41.267, "longitude": 1.767, "address": "Rda. de Sant Camil, s/n, 08810 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "77", "name": "Residencia y Centro de Día MUTUAM Jaume Nualart", "latitude": 41.354, "longitude": 2.066, "address": "Carrer de l'Anoia, 8, 14, 08940 Cornellà de Llobregat, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "78", "name": "Grupo Vivo - UNIDAD MOVIL PET TAC- Les Corts", "latitude": 41.386, "longitude": 2.124, "address": "Carrer de Sabino Arana, 1, Les Corts, 08028 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "79", "name": "Hospital Universitario Quirónsalud Madrid", "latitude": 40.441, "longitude": -3.813, "address": " C. Diego de Velázquez, 1, 28223 Pozuelo de Alarcón, Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "80", "name": "Hospital Quirónsalud Sur", "latitude": 40.347, "longitude": -3.83, "address": "C. Estambul, 30, 28922 Alcorcón, Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "81", "name": "Hospital Universitario La Luz - Quirónsalud", "latitude": 40.443, "longitude": -3.705, "address": "C. del Maestro Ángel Llorca, 8, Chamberí, 28003 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "82", "name": "Grupo Vivo Salesas - Madrid ", "latitude": 40.425, "longitude": -3.692, "address": "Calle del Almirante, 13,  28004 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "83", "name": "Residència Sant Joan de Déu", "latitude": 41.482, "longitude": 1.923, "address": "Av. Camí Fondo, 22, 08760 Martorell, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "84", "name": "TMEH - Teknon", "latitude": 41.401, "longitude": 2.135, "address": "Carrer de Vilana, 12, Sarrià-Sant Gervasi, 08022 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "85", "name": "Grupo Vivo Pio XII - Madrid", "latitude": 40.466, "longitude": -3.674, "address": " Cta. del Sagrado Corazón, 4, Chamartín, 28016 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "86", "name": "Laboratorio Echevarne Mataró", "latitude": 41.54, "longitude": 2.444, "address": "Carrer de Sant Antoni, 11, 08301 Mataró, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "87", "name": "Laboratorio Echevarne Granollers", "latitude": 41.607, "longitude": 2.288, "address": "Carrer de Girona, 66, 08402 Granollers, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "88", "name": "Laboratorio Echevarne Terrassa", "latitude": 41.564, "longitude": 2.012, "address": "Carrer de Galileu, 325, 08224 Terrassa, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "89", "name": "Laboratorio Echevarne Sant Cugat", "latitude": 41.475, "longitude": 2.087, "address": "Carrer de Martorell, 20, 22 Local 2, 08172 Sant Cugat del Vallès, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "90", "name": "Laboratorio Echevarne Barcelona", "latitude": 41.396, "longitude": 2.164, "address": "Carrer de Provença, 312, L'Eixample, 08037 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "92", "name": "Laboratorio Echevarne Castelldefels", "latitude": 41.283, "longitude": 1.977, "address": "Av. de la Constitució, 185, 187, 08860 Castelldefels, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "94", "name": "Diaverum - Virgen de Montserrat", "latitude": 41.443, "longitude": 2.188, "address": "C/ Grau de Sant Andreu, 467, 08030", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "95", "name": "Diaverum Palau", "latitude": 41.41, "longitude": 2.173, "address": "C/ Sant Antonio Maria Claret, 135", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "96", "name": "Diaverum - Rotellar", "latitude": 41.427, "longitude": 2.184, "address": "Carrer de Concepción Arenal, 151, Sant Andreu, 08027 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "97", "name": " Hospital Municipal de Badalona", "latitude": 41.451, "longitude": 2.248, "address": "Via Augusta, 9-13, 08911 Badalona, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "98", "name": " Centre Sociosanitari El Carme - Badalona", "latitude": 41.469, "longitude": 2.229, "address": "Camí de Sant Jeroni de la Murtra, 60, 08917 Badalona, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "99", "name": "Hospital de Blanes", "latitude": 41.688, "longitude": 2.802, "address": "Carrer Accés Cala Sant Francesc, 5, 17300 Blanes, Girona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "100", "name": "Hospital Ribera Povisa", "latitude": 42.224, "longitude": -8.72, "address": "Rúa de Salamanca, 5, Freixeiro, 36211 Vigo, Pontevedra", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "101", "name": "Consorci Sanitari Integral", "latitude": 41.375, "longitude": 2.106, "address": "Av. Josep Molins, 29, 08906 L'Hospitalet de Llobregat, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "102", "name": "🚨 Turno Urgente - Maresme ", "latitude": 41.538, "longitude": 2.445, "address": "Maresme", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "103", "name": "🚨 Turno Urgente - Vallès", "latitude": 41.468, "longitude": 2.078, "address": "Vallés", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "105", "name": "Fundación Hospitalarias Madrid- Hospital General", "latitude": 40.419, "longitude": -3.668, "address": "C. del Dr. Esquerdo, 83, Retiro, 28007 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "106", "name": "Hospital de Mataró", "latitude": 41.556, "longitude": 2.43, "address": "Consorcio Sanitario del Maresme - Hospital de Mataró", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "107", "name": "Hospital Juan Cardona", "latitude": 43.481, "longitude": -8.203, "address": "Rúa Pardo Bazán, s/n, 15404 Ferrol, A Coruña", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "109", "name": "Centro de Oftalmología Barraquer ", "latitude": 41.4, "longitude": 2.141, "address": " C/ de Muntaner, 314, Sarrià-Sant Gervasi, 08021 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "110", "name": "FMC Dialcentro", "latitude": 40.416, "longitude": -3.672, "address": "c/ Pilar Millán Astray,2. 28009", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "111", "name": "FMC Alcobendas", "latitude": 40.0, "longitude": -3.642, "address": " Av. de Camilo José Cela, 56, 28108 Alcobendas, Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "112", "name": "Instituto Clavel Chamartín", "latitude": 40.448, "longitude": -3.687, "address": "C. de Joaquín Costa, 28, primera planta, Chamartín, 28002 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "113", "name": "Diaverum Baix Llobregat", "latitude": 41.348, "longitude": 2.105, "address": "C/ Motors, 392, planta baja  08908 Hospitalet de Llobregat", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "114", "name": "Diaverum Nephros", "latitude": 41.432, "longitude": 2.145, "address": "C/ Harmonía, 7 08035 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "115", "name": " 🚨 Turno Urgente - Blanes", "latitude": 41.676, "longitude": 2.787, "address": "Blanes", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "116", "name": "Hospital Ntra Sra del Rosario", "latitude": 40.432, "longitude": -3.68, "address": "C. del Príncipe de Vergara, 53, Salamanca, 28006 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "117", "name": "Hospital Ribera Virgen de la Caridad", "latitude": 37.615, "longitude": -0.988, "address": "C. Jorge Juan, 30, 30204 Cartagena, Murcia", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "120", "name": "Hospital Universitari Sagrat Cor", "latitude": 41.387, "longitude": 2.148, "address": " Carrer de Viladomat, 288, L'Eixample, 08029 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "122", "name": "Parc Sanitari Pere Virgili", "latitude": 41.414, "longitude": 2.142, "address": "Carrer d'Esteve Terradas, 30, Gràcia, 08023 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "125", "name": "Hospital de Viladecans", "latitude": 41.32, "longitude": 2.025, "address": "Avinguda del Mil·lenari, 08840 Viladecans, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "126", "name": "Residència i Centre de Dia Gavà", "latitude": 41.305, "longitude": 2.004, "address": "Carrer de la Concòrdia, 24, 08850 Gavà, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "127", "name": "Clínica Corachan", "latitude": 41.394, "longitude": 2.13, "address": "Plaza Dr, Pl. de Manuel Corachán, 4, Distrito de Sarrià-Sant Gervasi, 08017 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "128", "name": "Hestia Palau", "latitude": 41.413, "longitude": 2.174, "address": "Carrer de Sant Antoni Maria Claret, 135, Horta-Guinardó, 08025 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "130", "name": "Hestia Duran i Reynals", "latitude": 41.353, "longitude": 2.122, "address": "Avinguda de la Granvia de l’Hospitalet, 199, 08908 L'Hospitalet de Llobregat, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "131", "name": "CAP Nova Lloreda 8", "latitude": 41.451, "longitude": 2.233, "address": "Av. de Catalunya, 62, 64, 08917 Badalona, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "132", "name": "CAP Progrés-Raval", "latitude": 41.45, "longitude": 2.245, "address": "Carrer del General Weyler, 44, 08912 Badalona, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "133", "name": "IOA Madrid - Miranza", "latitude": 40.439, "longitude": 3.71, "address": "C. de Galileo, 104, y 110, Chamberí, 28003 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "134", "name": "IM Clinic", "latitude": 41.48, "longitude": 2.08, "address": " Carrer de Victor Hugo, 24, 08174 Sant Cugat del Vallès, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "135", "name": "CST - Hospital Terrassa", "latitude": 41.557, "longitude": 2.053, "address": "Carr. de Torrebonica, s/n, 08227 Terrassa, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "136", "name": "CAP Apenins-Montigalà", "latitude": 41.45, "longitude": 2.247, "address": "Carrer Apenins, s/n, 08917 Badalona, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "137", "name": "Hospital Sant Antoni Abat", "latitude": 41.225, "longitude": 1.725, "address": "Carrer de Sant Josep, 21, 23, 08800 Vilanova i la Geltrú, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "138", "name": "CAP Montgat", "latitude": 41.469, "longitude": 2.281, "address": "Passatge Sant Antoni Maria Claret, s/n, 08390 Montgat, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "142", "name": "CAP Morera Pomar", "latitude": 41.449, "longitude": 2.232, "address": "Carrer de Pere III, 1, 08915 Badalona, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "143", "name": "CAP Doctor Martí i Julià", "latitude": 41.348, "longitude": 2.078, "address": "Av. del Baix Llobregat, 17, 08940 Cornellà de Llobregat, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "144", "name": "Grupo Vivo - Clínica Médica Los Belgas", "latitude": 40.635, "longitude": -4.005, "address": "C. Pereda, 1-3, 28400 Collado Villalba, Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "145", "name": "Hospital Clínic de Barcelona", "latitude": 41.386, "longitude": 2.151, "address": "Carrer de Villarroel, 170, L'Eixample, 08036 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "147", "name": "Fresenius Sant Boi", "latitude": 41.331, "longitude": 2.041, "address": "Carretera Santa Creu de Calafell, 49A", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "148", "name": "Fresenius  Terrassa", "latitude": 41.55, "longitude": 2.022, "address": "Av. de Can Jofresa, 6, 08223 Terrassa, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "150", "name": "CMD SALUD CALIDAD INTEGRAL S.L.", "latitude": 41.328, "longitude": 2.125, "address": "Carreter E, Zona Franca, 40 Zona Franca- port Sants-Montjuïc 08040", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "152", "name": "CQM Clinic Maresme SL", "latitude": 41.536, "longitude": 2.444, "address": "Carrer Lepanto 13-21, 08301 Mataró ", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "153", "name": "Clínica López Ibor", "latitude": 40.433, "longitude": -3.722, "address": "Calle del Dr. Juan José López Ibor, 2, Moncloa - Aravaca, 28035 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "154", "name": "Residencia Bouco Aravaca", "latitude": 40.447, "longitude": -3.78, "address": "Av. del Talgo, 53, Moncloa - Aravaca, 28023 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "155", "name": "Residència i Centre de Dia Bouco Ciutat Diagonal", "latitude": 41.384, "longitude": 2.086, "address": "Av. la Miranda, 8, 16, 08950 Esplugues de Llobregat, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "156", "name": "LANTUS Residencias", "latitude": 41.453, "longitude": 2.204, "address": "Mare de Déu dels Àngels, 2-4, 08921 Sta. Coloma de Gramenet", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "157", "name": "CAP Tiana", "latitude": 41.483, "longitude": 2.268, "address": "Carrer Franci 9 (Casa de la Punxa), 08391 Tiana", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "159", "name": "Residencia Hestia Esquerdo", "latitude": 40.382, "longitude": -3.758, "address": "Avenida de los Poblados, 70, 28044 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "160", "name": "Clinica Diagonal", "latitude": 41.372, "longitude": 2.083, "address": "C/Sant Mateu 24-26", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "161", "name": "COLISEE Sant Jordi", "latitude": 41.428, "longitude": 2.144, "address": "Pg. de la Vall d'Hebron, 135, 145, Horta-Guinardó, 08035 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "162", "name": "COLISEE Valldoreix", "latitude": 41.465, "longitude": 2.066, "address": "Rambla Mossèn Jacint Verdaguer, 199, 08197 Valldoreix, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "163", "name": "Fundació Hospitalàries Barcelona", "latitude": 41.429, "longitude": 2.146, "address": "PASSEIG VALL D'HEBRON 107-117", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "164", "name": "Fundació Hospitalàries Martorell", "latitude": 41.48, "longitude": 1.923, "address": "Av. Comte Llobregat, 117 · 08760 · Martorell", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "165", "name": "Hospital Ruber Juan Bravo 39", "latitude": 40.438, "longitude": -3.677, "address": " Calle de Juan Bravo, 39, Salamanca, 28006 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "175", "name": "Activita Centre Mèdic", "latitude": 41.61, "longitude": 2.289, "address": "Carrer de Joan Prim, 136, 146, 08402 Granollers, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "177", "name": "Start Madrid", "latitude": 40.43, "longitude": -3.69, "address": "C. José Abascal, 56, floor 2, 28003 Madrid, Spain.", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "178", "name": "PreverSalud Madrid", "latitude": 40.474, "longitude": -3.712, "address": "C. Islas Chafarinas, 21C, Fuencarral-El Pardo, 28035 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "179", "name": "PreverSalud Barcelona", "latitude": 41.387, "longitude": 2.701, "address": "Calle Por definir", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "180", "name": "Hospital de Figueres", "latitude": 42.265, "longitude": 2.964, "address": "Ronda del Rector Arolas, s/n, 17600 Figueres, Girona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "181", "name": "Turó Park International Healthcare", "latitude": 41.395, "longitude": 2.136, "address": "Plaza Sant Gregori Taumaturg nº5, 08021, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "182", "name": "Start Barcelona", "latitude": 41.414, "longitude": 2.143, "address": "Av. de Vallcarca, 151, Gràcia, 08023 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "184", "name": "Residència Bon Repòs", "latitude": 41.404, "longitude": 2.164, "address": " Pg. de St. Joan, 156, Gràcia, 08037 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "185", "name": "Fresenius Barcelona Glòries", "latitude": 41.405, "longitude": 2.184, "address": "Carrer del Consell de Cent, 581, L'Eixample, 08013 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "190", "name": "Sant Andreu Salut", "latitude": 41.725, "longitude": 1.829, "address": "Plaça de l'Hospital, 08241 Manresa, Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "203", "name": "Unidad de Terapia Ocupacional El Bosque SL ", "latitude": 40.42, "longitude": -3.66, "address": " C. de los Peñascales, 14, Salamanca, 28028 Madrid", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "208", "name": "Hestia La Robleda", "latitude": 42.931, "longitude": -8.126, "address": "Lugar del Santiso, S/N, 15821 Santiso, A Coruña", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "209", "name": "Hospital Psiquiátrico Hestia San José", "latitude": 42.228, "longitude": -8.745, "address": "Rúa Tomás A. Alonso, 89, Coia, 36208 Vigo, Pontevedra", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "213", "name": "Fresenius Medical Care Granollers", "latitude": 41.608, "longitude": 2.286, "address": "Carrer de Manel Cornella 37, 08402 Granollers, Barcelona, España", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "214", "name": "FUNDACIÓ BARCELONABETA BRAIN RESEARCH CENTER", "latitude": 41.389, "longitude": 2.19, "address": "C/Wellington, 30 08005 Barcelona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "217", "name": "Centro Asistencial Solimat Getafe", "latitude": 40.304, "longitude": -3.694, "address": "Calle Irene Joliot Curie 2, 28906 Getafe", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "218", "name": "Centro Asistencial Solimat Illescas", "latitude": 40.141, "longitude": -3.838, "address": "Carretera Ugena 2, Illescas 45200, Toledo", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "223", "name": "Centro en Granollers", "latitude": 41.607, "longitude": 2.287, "address": "Carrer de Barcelona 65", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "224", "name": "Centro en Blanes", "latitude": 41.675, "longitude": 2.779, "address": "Ctra. Malgrat 17300 Blanes, Girona", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "225", "name": "Centro en Barcelona", "latitude": 41.389, "longitude": 2.17, "address": "Paseo de gracia, 6", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "228", "name": "MC Mutual", "latitude": 41.401, "longitude": 2.141, "address": "Carrer Copernic 58, Barcelona 08006", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}, {"id": "230", "name": "FREMAP Hospital de Majadahonda", "latitude": 40.451, "longitude": -3.85, "address": "Carretera de Pozuelo 61, Majadahonda", "city": "N/A", "specialization": [], "capacity": "N/A", "phone": "N/A", "type": "Healthcare Facility"}];
         
         // Global variables
         let map;
         let allMarkers = [];
-        let currentFilters = {
-            cities: [],
-            specializations: []
-        };
         
         // Initialize map
         function initMap() {
@@ -175,25 +121,15 @@
                 attribution: '© OpenStreetMap contributors'
             }).addTo(map);
             
-            // Load initial data
-            loadAllMarkers();
+            // Load all facilities
+            loadAllFacilities();
         }
         
-        function loadAllMarkers() {
-            addMarkersToMap(facilitiesData);
-            updateStatistics(facilitiesData);
-        }
-        
-        function clearAllMarkers() {
-            allMarkers.forEach(marker => map.removeLayer(marker));
-            allMarkers = [];
-        }
-        
-        function addMarkersToMap(facilities) {
-            // Group facilities by location
+        function loadAllFacilities() {
+            // Group facilities by location to handle multiple facilities at same coordinates
             const facilitiesGrouped = {};
-            facilities.forEach(fac => {
-                const key = fac.latitude.toFixed(3) + ',' + fac.longitude.toFixed(3);
+            facilitiesData.forEach(fac => {
+                const key = fac.latitude.toFixed(4) + ',' + fac.longitude.toFixed(4);
                 if (!facilitiesGrouped[key]) facilitiesGrouped[key] = [];
                 facilitiesGrouped[key].push(fac);
             });
@@ -201,189 +137,82 @@
             // Add facility markers
             Object.entries(facilitiesGrouped).forEach(([key, facs]) => {
                 const [lat, lon] = key.split(',').map(Number);
-                const radius = Math.min(8 + facs.length * 2, 25);
                 
-                let popupContent = '<div style="font-size: 12px; max-width: 400px;">';
-                popupContent += '<h4 style="margin: 0 0 10px 0; color: #2c3e50; text-align: center;">' + facs.length + ' Facility(ies)</h4>';
-                popupContent += '<div style="max-height: 300px; overflow-y: auto;">';
-                
-                facs.forEach((fac, i) => {
-                    const bgColor = i % 2 === 0 ? '#f9f9f9' : 'white';
-                    popupContent += '<div style="padding: 8px 5px; margin-bottom: 5px; background: ' + bgColor + '; border-left: 3px solid #007bff;">';
-                    popupContent += '<div style="font-weight: bold; color: #2c3e50;">' + fac.name + '</div>';
-                    popupContent += '<small>ID: ' + fac.id + ' | City: ' + fac.city + '</small><br>';
-                    if (fac.address !== 'N/A') {
-                        popupContent += '<small>Address: ' + fac.address + '</small><br>';
-                    }
-                    if (fac.phone !== 'N/A') {
-                        popupContent += '<small>Phone: ' + fac.phone + '</small><br>';
-                    }
-                    if (fac.specialization.length > 0) {
-                        popupContent += '<small>Specializations: ' + fac.specialization.join(', ') + '</small>';
-                    }
-                    popupContent += '</div>';
+                // Create hospital emoji marker or company logo marker
+                const hospitalIcon = L.divIcon({
+                    className: 'facility-marker',
+                    html: '<img src="logo.png" style="width:22px;height:22px;" alt="Company Logo"/>',
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 16],
+                    popupAnchor: [0, -20]
                 });
                 
-                popupContent += '</div></div>';
+                // Create popup content
+                let popupContent = '<div class="facility-popup">';
+                if (facs.length === 1) {
+                    const fac = facs[0];
+                    popupContent += '<h4 class="facility-header">' + fac.name + '</h4>';
+                    popupContent += '<div class="facility-item">';
+                    popupContent += '<div class="facility-info">';
+                    popupContent += '<strong>ID:</strong> ' + fac.id + '<br>';
+                    popupContent += '<strong>City:</strong> ' + fac.city + '<br>';
+                    if (fac.address !== 'N/A') {
+                        popupContent += '<strong>Address:</strong> ' + fac.address + '<br>';
+                    }
+                    if (fac.phone !== 'N/A') {
+                        popupContent += '<strong>Phone:</strong> ' + fac.phone + '<br>';
+                    }
+                    if (fac.capacity !== 'N/A') {
+                        popupContent += '<strong>Capacity:</strong> ' + fac.capacity + '<br>';
+                    }
+                    if (fac.specialization.length > 0) {
+                        popupContent += '<strong>Specializations:</strong> ' + fac.specialization.join(', ');
+                    }
+                    popupContent += '</div></div>';
+                } else {
+                    popupContent += '<h4 class="facility-header">' + facs.length + ' Facilities at this Location</h4>';
+                    popupContent += '<div class="facility-details">';
+                    
+                    facs.forEach((fac, i) => {
+                        popupContent += '<div class="facility-item">';
+                        popupContent += '<div class="facility-name">' + fac.name + '</div>';
+                        popupContent += '<div class="facility-info">';
+                        popupContent += '<strong>ID:</strong> ' + fac.id + ' | <strong>City:</strong> ' + fac.city + '<br>';
+                        if (fac.address !== 'N/A') {
+                            popupContent += '<strong>Address:</strong> ' + fac.address + '<br>';
+                        }
+                        if (fac.phone !== 'N/A') {
+                            popupContent += '<strong>Phone:</strong> ' + fac.phone + '<br>';
+                        }
+                        if (fac.specialization.length > 0) {
+                            popupContent += '<strong>Specializations:</strong> ' + fac.specialization.join(', ');
+                        }
+                        popupContent += '</div></div>';
+                    });
+                    
+                    popupContent += '</div>';
+                }
+                popupContent += '</div>';
                 
-                const marker = L.circleMarker([lat, lon], {
-                    radius: radius,
-                    color: '#007bff',
-                    fillColor: '#007bff',
-                    fillOpacity: 0.7,
-                    weight: 2
+                // Create marker with hospital icon
+                const marker = L.marker([lat, lon], {
+                    icon: hospitalIcon
                 }).bindPopup(popupContent);
                 
                 marker.addTo(map);
                 allMarkers.push(marker);
             });
-        }
-        
-        function filterFacilities() {
-            let filtered = [...facilitiesData];
             
-            if (currentFilters.cities.length > 0) {
-                filtered = filtered.filter(facility => currentFilters.cities.includes(facility.city));
+            // Fit map to show all facilities
+            if (allMarkers.length > 0) {
+                const group = new L.featureGroup(allMarkers);
+                map.fitBounds(group.getBounds().pad(0.1));
             }
-            
-            if (currentFilters.specializations.length > 0) {
-                filtered = filtered.filter(facility => {
-                    return facility.specialization.some(spec => currentFilters.specializations.includes(spec));
-                });
-            }
-            
-            return filtered;
         }
         
-        function updateStatistics(facilities) {
-            const cities = new Set(facilities.map(f => f.city));
-            const specializations = new Set();
-            facilities.forEach(f => f.specialization.forEach(s => specializations.add(s)));
-            
-            document.getElementById('stats-content').innerHTML = 
-                '• Facilities Shown: <strong>' + facilities.length.toLocaleString() + '</strong><br>' +
-                '• Cities: <strong>' + cities.size.toLocaleString() + '</strong><br>' +
-                '• Specializations: <strong>' + specializations.size.toLocaleString() + '</strong>';
-        }
-        
-        function showNotification(message, type) {
-            const notification = document.createElement('div');
-            notification.className = 'notification ' + type;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                setTimeout(() => document.body.removeChild(notification), 300);
-            }, 2500);
-        }
-        
-        function updateFilterStatus() {
-            const filters = [];
-            
-            if (currentFilters.cities.length > 0) {
-                filters.push('Cities: ' + (currentFilters.cities.length <= 3 ? 
-                    currentFilters.cities.join(', ') : 
-                    currentFilters.cities.slice(0, 3).join(', ') + '... (+' + (currentFilters.cities.length - 3) + ' more)'));
-            }
-            if (currentFilters.specializations.length > 0) {
-                filters.push('Specializations: ' + (currentFilters.specializations.length <= 2 ? 
-                    currentFilters.specializations.join(', ') : 
-                    currentFilters.specializations.slice(0, 2).join(', ') + '... (+' + (currentFilters.specializations.length - 2) + ' more)'));
-            }
-            
-            document.getElementById('filter-status').textContent = filters.length > 0 ? filters.join(' | ') : 'No Filters Applied';
-        }
-        
-        // Event listeners
+        // Initialize map when page loads
         document.addEventListener('DOMContentLoaded', function() {
             initMap();
-            
-            // Filter controls
-            document.getElementById('city-selector').addEventListener('change', updateFilterStatus);
-            document.getElementById('specialization-selector').addEventListener('change', updateFilterStatus);
-            
-            // Helper buttons
-            document.getElementById('select-all-cities').addEventListener('click', function() {
-                const selector = document.getElementById('city-selector');
-                for (let i = 0; i < selector.options.length; i++) {
-                    selector.options[i].selected = true;
-                }
-                updateFilterStatus();
-            });
-            
-            document.getElementById('clear-cities').addEventListener('click', function() {
-                document.getElementById('city-selector').selectedIndex = -1;
-                updateFilterStatus();
-            });
-            
-            document.getElementById('select-all-specializations').addEventListener('click', function() {
-                const selector = document.getElementById('specialization-selector');
-                for (let i = 0; i < selector.options.length; i++) {
-                    selector.options[i].selected = true;
-                }
-                updateFilterStatus();
-            });
-            
-            document.getElementById('clear-specializations').addEventListener('click', function() {
-                document.getElementById('specialization-selector').selectedIndex = -1;
-                updateFilterStatus();
-            });
-            
-            // Apply filters
-            document.getElementById('apply-filters').addEventListener('click', function() {
-                const button = this;
-                button.textContent = '🔄 Applying Filters...';
-                button.disabled = true;
-                
-                setTimeout(function() {
-                    // Update filter state
-                    currentFilters.cities = Array.from(document.getElementById('city-selector').selectedOptions).map(o => o.value);
-                    currentFilters.specializations = Array.from(document.getElementById('specialization-selector').selectedOptions).map(o => o.value);
-                    
-                    // Filter data
-                    const filteredFacilities = filterFacilities();
-                    
-                    // Update map
-                    clearAllMarkers();
-                    addMarkersToMap(filteredFacilities);
-                    updateStatistics(filteredFacilities);
-                    updateFilterStatus();
-                    
-                    showNotification('Filters applied! Showing ' + filteredFacilities.length + ' facilities.', 'success');
-                    
-                    button.textContent = '🔄 Apply Filters';
-                    button.disabled = false;
-                }, 500);
-            });
-            
-            // Reset filters
-            document.getElementById('reset-filters').addEventListener('click', function() {
-                document.getElementById('city-selector').selectedIndex = -1;
-                document.getElementById('specialization-selector').selectedIndex = -1;
-                
-                currentFilters = {
-                    cities: [],
-                    specializations: []
-                };
-                
-                clearAllMarkers();
-                loadAllMarkers();
-                updateFilterStatus();
-                showNotification('All filters reset!', 'info');
-            });
-            
-            // Toggle panel
-            document.getElementById('toggle-filters').addEventListener('click', function() {
-                const content = document.getElementById('filter-content');
-                if (content.style.display === 'none') {
-                    content.style.display = 'block';
-                    this.textContent = 'Hide';
-                } else {
-                    content.style.display = 'none';
-                    this.textContent = 'Show';
-                }
-            });
         });
     </script>
 </body>
