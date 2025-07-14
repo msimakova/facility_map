@@ -452,7 +452,7 @@ class CoordinateChecker:
         return new_corrections_df
     
     def save_final_combined(self, geocoded_results):
-        """Combina correcciones manuales y nuevas geocodificadas en un solo archivo final, sin duplicados."""
+        """Combina correcciones manuales y nuevas geocodificadas en un solo archivo final, sin duplicados y con facility_id."""
         # Cargar correcciones manuales
         corrections = None
         if os.path.exists(self.corrections_file):
@@ -461,6 +461,14 @@ class CoordinateChecker:
             corrections = pd.DataFrame()
         # Convertir resultados nuevos a DataFrame
         df_geocoded = pd.DataFrame(geocoded_results)
+        # Cargar raw para obtener ids
+        raw = pd.read_csv(self.raw_file)
+        name_to_id = dict(zip(raw['name'].str.lower(), raw['id']))
+        # Añadir facility_id a ambos dataframes
+        if not corrections.empty:
+            corrections['facility_id'] = corrections['Nombre_Original'].str.lower().map(name_to_id)
+        if not df_geocoded.empty:
+            df_geocoded['facility_id'] = df_geocoded['Nombre_Original'].str.lower().map(name_to_id)
         # Unificar columnas
         if not corrections.empty:
             corrections.columns = [c.strip() for c in corrections.columns]
