@@ -1,152 +1,92 @@
 facility_id,facility_name,facility_type,other_facility_type_name,verification_status,address,address_city,address_country,latitude,longitude,address_map_link,avg_review_rating,total_review
 6,Clínica Sagrada Familia,HOSPITAL,,VERIFIED,"Carrer de Torras i Pujalt, 1, 08022",Barcelona,España,41.4008,2.13459,https://goo.gl/maps/APdVsoFi6v5FG69n8,4.7,111
-7,Hospital de Barcelona,HOSPITAL,,VERIFIED,"Av. Diagonal, 660, 08034",Barcelona,Espana,41.39,2.12987,https://goo.gl/maps/ViHnWbpBowy999FZA,4.6,1635
-8,Clínica Nostra Senyora del Remei,HOSPITAL,,VERIFIED,"C/ de l'Escorial, 148, 08024",Barcelona,Espana,41.4098,2.15967,https://goo.gl/maps/6vQZVR9Gehzn1Fyi6,4.4,406
+7,Hospital de Barcelona,HOSPITAL,,VERIFIED,"Av. Diagonal, 660, 08034",Barcelona,Espana,41.38989,2.13007,https://goo.gl/maps/ViHnWbpBowy999FZA,4.5,1641
+8,Clínica Nostra Senyora del Remei,HOSPITAL,,VERIFIED,"C/ de l'Escorial, 148, 08024",Barcelona,Espana,41.4098,2.15967,https://goo.gl/maps/6vQZVR9Gehzn1Fyi6,4.4,414
 9,Clínica Mi Tres Torres,HOSPITAL,,VERIFIED,"Carrer del Dr. Roux, 76, 08017",Barcelona,España,41.3994,2.12895,https://goo.gl/maps/jPL5gfQwqCTKt5Eb7,4.9,256
-10,La Vostre Llar Reig,NURSING_HOME,,VERIFIED,"Rda. del Carril, 78, 08530, La Garriga",Barcelona,España,41.6821,2.28867,https://goo.gl/maps/gZBUwhvBixMDzPex7,,0
-11,La Vostre Llar Mataró,NURSING_HOME,,VERIFIED,"Carrer de Tordera, 8, 08302, Mataró",Barcelona,España,41.5279,2.43406,https://goo.gl/maps/gZBUwhvBixMDzPex7,,0
 12,Hospital El Pilar,HOSPITAL,,VERIFIED,"C/ de Balmes, 271, 08006",Barcelona,España,41.401,2.14811,https://maps.app.goo.gl/B9Rsay4oMGaaGG2b7,4.6,1081
-13,Centro Médico Teknon,HOSPITAL,,VERIFIED,"Carrer de Vilana, 12, 08022",Barcelona,España,41.4073,2.12739,https://maps.app.goo.gl/JCfrs8E5APcoytRs5,4.3,2013
-14,HLA Clínica Internacional Barcelona,CLINIC,,VERIFIED,"Carrer d'Anglí, 38, 08017",Barcelona,España,41.4014,2.12538,https://maps.app.goo.gl/Dc9fL5NdPMdY6m4x7,4.9,92
-15,Hospital Quirónsalud Barcelona,HOSPITAL,,VERIFIED,"Plaça d'Alfonso Comín, 5, 08023",Barcelona,España,41.4159,2.13856,https://maps.app.goo.gl/jMBaiJza4CVLQZX48,4.7,519
+13,Centro Médico Teknon,HOSPITAL,,VERIFIED,"Carrer de Vilana, 12, 08022",Barcelona,España,41.4073,2.12739,https://maps.app.goo.gl/JCfrs8E5APcoytRs5,4.3,2033
+14,HLA Clínica Internacional Barcelona,CLINIC,,VERIFIED,"Carrer d'Anglí, 38, 08017",Barcelona,España,41.4014,2.12538,https://maps.app.goo.gl/Dc9fL5NdPMdY6m4x7,4.9,93
+15,Hospital Quirónsalud Barcelona,HOSPITAL,,VERIFIED,"Plaça d'Alfonso Comín, 5, 08023",Barcelona,España,41.4159,2.13856,https://maps.app.goo.gl/jMBaiJza4CVLQZX48,4.7,525
 16,Clínica Sant Antoni,INTERMEDIATE_CARE_CENTER,,VERIFIED,"C/ de Sant Eloi, 6, 8, 08038",Barcelona,España,41.3562,2.14331,https://maps.app.goo.gl/cqPo4rry7Y3YohY86,4.6,25
 17,Fundació Puigvert,CLINIC,,VERIFIED,"C. de Cartagena, 340, 350, 08025",Barcelona,España,41.413,2.17248,https://maps.app.goo.gl/EcxaGpMvrvvQaYCL8,4.9,134
 18,Hospital HM Nens,HOSPITAL,,VERIFIED,"C/ del Consell de Cent, 437, 08009",Barcelona,Espana,41.3975,2.17378,https://maps.app.goo.gl/hkD3gZKs2Av8PPqt5,4.6,84
 19,Hospital HM Nou Delfos,HOSPITAL,,VERIFIED,"Av. de Vallcarca, 151, 08023",Barcelona,Espana,41.4135,2.1425,https://maps.app.goo.gl/M7Kii4mSnxWBhoet9,4.9,123
-20,Hospital HM Sant Jordi,HOSPITAL,,VERIFIED,"Plaça de l'Estació, 12, 08030",Barcelona,Espana,41.4368,2.19285,https://maps.app.goo.gl/V5CnVKDKBLSw1LLV7,,0
 21,Uros Associats | Clínica Sagrada Família,CLINIC,,VERIFIED,"Carrer de Torras i Pujalt, 11, Edifici Consultoris, Despatx 2.9",Barcelona,España,41.4001,2.13442,https://maps.app.goo.gl/eexS39vaitFfp8518,4.7,3
 22,Uros Associats | Teknon,HOSPITAL,,VERIFIED,"Carrer de la Marquesa de Vilallonga, 12, Edifici Marquesa, Consultori, 13",Barcelona,España,41.4058,2.12715,https://maps.app.goo.gl/cfWuQGoBpz3bGD1Y8,5.0,14
-23,Hospital Universitari Dexeus,HOSPITAL,,VERIFIED,"Carrer de Sabino Arana, 19 Ed",Barcelona,Espana,41.3851,2.12568,https://maps.app.goo.gl/KXvdRkXeMrGTokx7A,4.4,708
-24,Instituto Guttmann,CLINIC,,VERIFIED,"Camí de Can Ruti, s/n, 08916, Badalona",Barcelona,Espana,41.4787,2.23695,https://maps.app.goo.gl/6UhQMxjuvkdyqGY5A,4.9,62
-25,Hospital Universitario de Torrejón,HOSPITAL,,VERIFIED,"C. Mateo Inurria, 28850 Torrejón de Ardoz",Madrid,Espana,41.4787,-3.43526,https://maps.app.goo.gl/LQAp75RKqBdWNN1A9,4.7,746
-26,🏅 Turno Garantizado,HOSPITAL,,VERIFIED,Barcelona,Barcelona,España,41.3874,2.1686,https://maps.app.goo.gl/Q8jtCMuWBDeShFCn6,,0
+23,Hospital Universitari Dexeus,HOSPITAL,,VERIFIED,"Carrer de Sabino Arana, 19 Ed",Barcelona,Espana,41.3851,2.12568,https://maps.app.goo.gl/KXvdRkXeMrGTokx7A,4.4,718
+25,Hospital Universitario de Torrejón,HOSPITAL,,VERIFIED,"C. Mateo Inurria, 28850 Torrejón de Ardoz",Madrid,Espana,41.4787,-3.43526,https://maps.app.goo.gl/LQAp75RKqBdWNN1A9,4.7,759
 27,🚨 Turno Urgente,HOSPITAL,,VERIFIED,Barcelona,Barcelona,España,41.3874,2.1686,https://maps.app.goo.gl/Q8jtCMuWBDeShFCn6,,0
-28,🚨 Turno Urgente,HOSPITAL,,VERIFIED,Madrid,Madrid,España,40.4149,-3.69791,https://maps.app.goo.gl/Z74uugUidEP75VfS8,,0
-29,Hospital Esperit Sant,HOSPITAL,,VERIFIED,"Avinguda Mossèn Josep Pons i Rabadà, s/n, 08923 Santa Coloma de Gramenet",Barcelona,España,41.4379,2.21324,https://maps.app.goo.gl/Cq11DcFBhSXMmVu3A,,0
-30,Clínica CEMTRO,CLINIC,,VERIFIED,"Av. del Ventisquero de la Condesa, 42, Fuencarral-El Pardo, 28035 Madrid",Madrid,Espana,40.494,-3.71705,https://maps.app.goo.gl/UHRna8UKhG7s1qpY8,5.0,134
-31,Mutua Terrassa,HOSPITAL,,VERIFIED,"Plaça del Doctor Robert, 5, 08221 Terrassa",Terrassa,Espana,41.5637,2.01712,https://maps.app.goo.gl/k74vvdLE2A9Lbfdu5,4.7,147
-33,Centro en Madrid,HOSPITAL,,VERIFIED,Madrid,Madrid,España,40.4149,-3.69791,https://maps.app.goo.gl/Z74uugUidEP75VfS8,,0
-43,Turnos de verano,HOSPITAL,,VERIFIED,Barcelona,Barcelona o Vallés,España,41.387,2.169,https://maps.app.goo.gl/Q8jtCMuWBDeShFCn6,,0
-44,Clinica Antiaging,CLINIC,,VERIFIED,"Ronda del General Mitre, 84, Sarrià-Sant Gervasi, 08021 Barcelona",Barcelona,Spain,41.4,2.135,https://maps.app.goo.gl/nLhki71LidTnAYRL9,5.0,1
-45,Instituto Oftalmología Castanera,CLINIC,,VERIFIED,"Via Augusta 20, 2 Gracia 08006",Barcelona,Spain,41.4,2.155,https://maps.app.goo.gl/oBEwHdVf9g592Yeg9,5.0,2
-46,Casal de Curació,INTERMEDIATE_CARE_CENTER,,VERIFIED,"Casal de Curació, C. de Maria Vidal, 48, 08340 Vilassar de Mar, Barcelona",Barcelona,Spain,41.501,2.387,https://maps.app.goo.gl/JTeUcfSN11zme32q7,4.2,9
+30,Clínica CEMTRO,CLINIC,,VERIFIED,"Av. del Ventisquero de la Condesa, 42, Fuencarral-El Pardo, 28035 Madrid",Madrid,Espana,40.494,-3.71705,https://maps.app.goo.gl/UHRna8UKhG7s1qpY8,5.0,137
+32,H. U. San Francisco de Asis,HOSPITAL,,VERIFIED,"C. de Joaquín Costa, 28, Chamartín, 28002 Madrid",Madrid,Espana,40.442517,-3.683065,https://maps.app.goo.gl/dt3TjNuPkEKXvuiW8,4.6,555
+38,Intem - Hospital del Mar,HOSPITAL,,VERIFIED,"Pg Marítim de la Barceloneta, 25, 29, 08003 Barcelona",Barcelona,Espana,41.3841,2.19403,"https://www.google.com/maps/place/Hospital+del+Mar/@41.3845118,2.1939045,17z/data=!3m1!4b1!4m6!3m5!1s0x12a4a308851d9f7d:0x9973e0e4ba540a65!8m2!3d41.3845118!4d2.1939045!16s%2Fg%2F121hdv_r?entry=ttu",5.0,12
 47,Hospital Los Madroños,HOSPITAL,,VERIFIED,"M-501, Km 17, 900, 28690 Brunete, Madrid",Madrid,Spain,40.399,-3.999,https://maps.app.goo.gl/WdusfFDH7ciSAYEb9,4.5,8
 49,Clinica ServiDigest,CLINIC,,VERIFIED,"C/ de Balmes, 334, Sarrià-Sant Gervasi, 08006 Barcelona",Barcelona,Spain,41.403,2.144,https://maps.app.goo.gl/6em5nbhSWcUWC3Cp6,5.0,23
 50,PrevenJobs Terrassa,OCCUPATIONAL_HEALTH_AND_SAFETY_CENTER,,VERIFIED,"Pg. de les Lletres, nº 11, 08221 Terrassa, Barcelona",Terrassa,Barcelona,41.571,2.01,https://maps.app.goo.gl/y33onhAq3gvk2UsZA,3.0,2
-51,Clínica Galatea,CLINIC,,VERIFIED,"Carrer de Palafolls, 15, Sarrià-Sant Gervasi, 08017 Barcelona",Barcelona,Spain,41.411,2.114,https://maps.app.goo.gl/LDqLSJ2RR9qQJhE86,5.0,15
-52,Clínica Eática,CLINIC,,VERIFIED,"Carrer d'Anglí, 64, Distrito de Sarrià-Sant Gervasi, 08017 Barcelona",BCN,Spain,41.404,2.122,https://maps.app.goo.gl/DwKT4Ma7hDnkUQ4w9,,0
 53,Hospital de día MUTUAM Güell,NURSING_HOME,,VERIFIED,"C. de la Mare de Déu de la Salut, 49, Gràcia, 08024 Barcelona",Barcelona,Spain,41.412,2.157,https://maps.app.goo.gl/A4wQAfcbPTRVHBuS9,5.0,17
-54,Centro Assistencial Mutuam Collserola,NURSING_HOME,,VERIFIED,"Pg. de la Vall d'Hebron, 159, 169, Horta-Guinardó, 08035 Barcelona",Barcelona,Spain,41.435,2.147,https://g.co/kgs/6Kx6vKQ,,0
 55,Residencia Molí-Via Favència Mutuam,NURSING_HOME,,VERIFIED,"Carrer del Molí, 67, Nou Barris, 08016 Barcelona",Barcelona,Spain,41.446,2.182,https://maps.app.goo.gl/xJ8vSEqUyneXh9mJA,4.5,2
 56,HLA Hospital Universitario Moncloa,HOSPITAL,,VERIFIED," Av. de Valladolid, 83, Moncloa - Aravaca, 28008 Madrid",MAD,Spain,40.433,-3.734,https://maps.app.goo.gl/yd9Gn6LUtAb2KU5AA,5.0,7
 57,Clinica Lluria ,CLINIC,,VERIFIED,"Ptge. de Mercader, 14, L'Eixample, 08008 Barcelona",Barcelona,Spain,41.393,2.16,https://maps.app.goo.gl/Ab4ATScfyYgEupL77,4.9,44
 58,Hospital Universitario San Rafael,HOSPITAL,,VERIFIED,"C. de Serrano, 199, Chamartín, 28016 Madrid",MAD,Spain,40.453,-3.682,https://maps.app.goo.gl/gpJWxG64H2ryFhkq9,4.9,75
-59,Hospital Quirónsalud Badalona,HOSPITAL,,VERIFIED,"Carrer de la Seu d'Urgell, 77, 08911 Badalona, Barcelona",Badalona,Spain,41.462,2.251,https://maps.app.goo.gl/WdRby16NvkpDLoKf7,4.9,217
-60,Fundación Hospitalarias Benito Menni - Complejo Assist.,CLINIC,,VERIFIED,"C. Jardines, 1, 28350 Ciempozuelos, Madrid",MAD,SPAIN,40.157,-3.619,https://maps.app.goo.gl/q2igg63cYh4qLtNF6,4.0,3
-62,Centre Sanitari Can Mora,CLINIC,,VERIFIED,"Carrer de Sant Jordi, 37, 08172 Sant Cugat del Vallès, Barcelona",Barcelona,Spain,41.468,2.082,https://maps.app.goo.gl/nYijF56Xqm4rpaxh7,4.6,23
-63,Diaverum IHB,CLINIC,,VERIFIED,"C/ d'Arístides Maillol, 15, Les Corts, 08028 Barcelona",Barcelona,Spain,41.379,2.119,https://maps.app.goo.gl/JAQ448crwedGeUNW6,4.7,6
+59,Hospital Quirónsalud Badalona,HOSPITAL,,VERIFIED,"Carrer de la Seu d'Urgell, 77, 08911 Badalona, Barcelona",Badalona,Spain,41.462,2.251,https://maps.app.goo.gl/WdRby16NvkpDLoKf7,4.9,226
+60,Fundación Hospitalarias Benito Menni - Complejo Assist.,CLINIC,,VERIFIED,"C. Jardines, 1, 28350 Ciempozuelos, Madrid",MAD,SPAIN,40.157,-3.619,https://maps.app.goo.gl/q2igg63cYh4qLtNF6,4.3,4
 64,Diaverum Badalona,CLINIC,,VERIFIED,"Carrer de la Ceràmica, 13, 08915 Badalona, Barcelona",Badalona,Spain,41.46,2.255,https://maps.app.goo.gl/SkwFDYtxj4FA4tT88,5.0,9
-65,Clinica San Vicente,CLINIC,,VERIFIED,"C. Cerilleras, 7A, Carabanchel, 28054 Madrid",Carabanchel,Spain,40.372,-3.727,https://maps.app.goo.gl/bBw1H991Qnd6rxrv8,,0
-66,Fundación Instituto San José,INTERMEDIATE_CARE_CENTER,,VERIFIED,Avenida de la Hospitalidad s/n 28054,MAD,Spain,40.363,-3.772,https://maps.app.goo.gl/mYmK6FcQ8zBDmPNt5,4.6,75
+66,Fundación Instituto San José,INTERMEDIATE_CARE_CENTER,,VERIFIED,Avenida de la Hospitalidad s/n 28054,MAD,Spain,40.363,-3.772,https://maps.app.goo.gl/mYmK6FcQ8zBDmPNt5,4.7,76
 67,Hospital Quirónsalud Valle del Henares,HOSPITAL,,VERIFIED,"Av. de la Constitución, 249, 28850 Torrejón de Ardoz, Madrid, España",MAD,Spain,40.465,-3.441,https://maps.app.goo.gl/rNJa4SF1LkK63E3W9,4.9,8
-68,Hospital Ruber Juan Bravo 49,HOSPITAL,,VERIFIED," Calle de Juan Bravo, 49, Salamanca, 28006 Madrid",MAD,Spain,40.438,-3.677,https://maps.app.goo.gl/d2G9ReA35vbWKzZs6,4.5,283
-69,Hospital Sant Jaume de Calella,HOSPITAL,,VERIFIED,"Carrer de Sant Jaume, 209, 217, 08370 Calella, Barcelona",Maresme,Spain,41.615,2.657,https://maps.app.goo.gl/DPpNc7VETzKY8ozA8,4.6,589
-70,Residencia y Centro de Día Rubí,NURSING_HOME,,VERIFIED,"C/ Lepant, 31-33 08191, Rubí ",Rubi,Spain,41.501,2.035,https://maps.app.goo.gl/aDdpMyomJ8SaMY7z6,,0
-72,Konic Health,CLINIC,,VERIFIED,Pl. de la Bonanova,BCN,Spain,41.407,2.134,https://maps.app.goo.gl/zrmt7vXceC7aUbci9,,0
+68,Hospital Ruber Juan Bravo 49,HOSPITAL,,VERIFIED," Calle de Juan Bravo, 49, Salamanca, 28006 Madrid",MAD,Spain,40.438,-3.677,https://maps.app.goo.gl/d2G9ReA35vbWKzZs6,4.5,284
+69,Hospital Sant Jaume de Calella,HOSPITAL,,VERIFIED,"Carrer de Sant Jaume, 209, 217, 08370 Calella, Barcelona",Maresme,Spain,41.615,2.657,https://maps.app.goo.gl/DPpNc7VETzKY8ozA8,4.6,607
+73,Grupo Vivo - UNIDAD MOVIL PET TAC- Granollers,CLINIC,,VERIFIED," Carrer de Francesc Ribas, s/n, 08402 Granollers, Barcelona",Granollers,España,41.6078,2.2875,https://maps.app.goo.gl/EcFJ1jqYaioNGy5h6,4.7,12
 74,Residencia y Centro de Día MUTUAM Sant Cugat,NURSING_HOME,,VERIFIED,"Carrer de Santa Rosa, 1, Sant Cugat del Vallès, 08172",Barcelona,Spain,41.472,2.076,https://g.co/kgs/SMJcaUX,4.0,1
-75,Hospital Comarcal de l'Alt Penedès,HOSPITAL,,VERIFIED,"Carrer de l'Espirall, s/n, 08720 Vilafranca del Penedès, Barcelona",Vilafranca del Penedés,Spain,41.359,1.706,https://maps.app.goo.gl/UDXean45Gskv8dC76,,0
-76,Hospital Sant Camil,HOSPITAL,,VERIFIED,"Rda. de Sant Camil, s/n, 08810 Barcelona",Sant Pere de Ribes,España,41.267,1.767,https://maps.app.goo.gl/BZTgmhjc4RibxpuKA,4.8,22
+76,Hospital Sant Camil,HOSPITAL,,VERIFIED,"Rda. de Sant Camil, s/n, 08810 Barcelona",Sant Pere de Ribes,España,41.267,1.767,https://maps.app.goo.gl/BZTgmhjc4RibxpuKA,4.8,23
 77,Residencia y Centro de Día MUTUAM Jaume Nualart,NURSING_HOME,,VERIFIED,"Carrer de l'Anoia, 8, 14, 08940 Cornellà de Llobregat, Barcelona",Barcelona,Spain,41.354,2.066,https://g.co/kgs/8GKHfcv,,0
-78,Grupo Vivo - UNIDAD MOVIL PET TAC- Les Corts,CLINIC,,VERIFIED,"Carrer de Sabino Arana, 1, Les Corts, 08028 Barcelona",Barcelona,Spain,41.386,2.124,https://maps.app.goo.gl/qjZDdQZxax2i1tr9A,4.5,13
-79,Hospital Universitario Quirónsalud Madrid,HOSPITAL,,VERIFIED," C. Diego de Velázquez, 1, 28223 Pozuelo de Alarcón, Madrid",MAD,Spain,40.441,-3.813,https://g.co/kgs/2dwrx76,4.6,216
+79,Hospital Universitario Quirónsalud Madrid,HOSPITAL,,VERIFIED," C. Diego de Velázquez, 1, 28223 Pozuelo de Alarcón, Madrid",MAD,Spain,40.441,-3.813,https://g.co/kgs/2dwrx76,4.6,219
 80,Hospital Quirónsalud Sur,HOSPITAL,,VERIFIED,"C. Estambul, 30, 28922 Alcorcón, Madrid",MAD,Spain,40.347,-3.83,https://g.co/kgs/mt8K84S,4.5,20
 81,Hospital Universitario La Luz - Quirónsalud,HOSPITAL,,VERIFIED,"C. del Maestro Ángel Llorca, 8, Chamberí, 28003 Madrid",MAD,Spain,40.443,-3.705,https://g.co/kgs/m61VzAm,4.5,32
-82,Grupo Vivo Salesas - Madrid ,CLINIC,,VERIFIED,"Calle del Almirante, 13,  28004 Madrid",MAD,Spain,40.425,-3.692,https://g.co/kgs/Ych9dsm,,0
-83,Residència Sant Joan de Déu,NURSING_HOME,,VERIFIED,"Av. Camí Fondo, 22, 08760 Martorell, Barcelona",BCN,Spain,41.482,1.923,https://g.co/kgs/voEYY89,,0
-84,TMEH - Teknon,HOSPITAL,,VERIFIED,"Carrer de Vilana, 12, Sarrià-Sant Gervasi, 08022 Barcelona",BCN,Spain,41.401,2.135,https://g.co/kgs/XmJAAdB,,0
 85,Grupo Vivo Pio XII - Madrid,CLINIC,,VERIFIED," Cta. del Sagrado Corazón, 4, Chamartín, 28016 Madrid",MAD,Spain,40.466,-3.674,https://g.co/kgs/HwM97YW,4.8,19
-86,Laboratorio Echevarne Mataró,CLINICAL_LABORATORY,,VERIFIED,"Carrer de Sant Antoni, 11, 08301 Mataró, Barcelona",Maresme,Spain,41.54,2.444,https://maps.app.goo.gl/hVDQ6E5qiLMkbpoB8,5.0,1
-87,Laboratorio Echevarne Granollers,CLINICAL_LABORATORY,,VERIFIED,"Carrer de Girona, 66, 08402 Granollers, Barcelona",Vallès,Spain,41.607,2.288,https://maps.app.goo.gl/3bqBLaMS2EnCyQAL7,5.0,33
-88,Laboratorio Echevarne Terrassa,CLINICAL_LABORATORY,,VERIFIED,"Carrer de Galileu, 325, 08224 Terrassa, Barcelona",Terrassa,Spain,41.564,2.012,https://maps.app.goo.gl/FombkLAohwRkCiXV8,4.7,3
-89,Laboratorio Echevarne Sant Cugat,CLINICAL_LABORATORY,,VERIFIED,"Carrer de Martorell, 20, 22 Local 2, 08172 Sant Cugat del Vallès, Barcelona",Sant Cugat,Spain,41.475,2.087,https://maps.app.goo.gl/RftHniB8EsJ6KEQS8,5.0,1
-90,Laboratorio Echevarne Barcelona,CLINICAL_LABORATORY,,VERIFIED,"Carrer de Provença, 312, L'Eixample, 08037 Barcelona",BCN,Spain,41.396,2.164,https://maps.app.goo.gl/qDAPwRkFf8ePQZzP7,,0
-92,Laboratorio Echevarne Castelldefels,CLINICAL_LABORATORY,,VERIFIED,"Av. de la Constitució, 185, 187, 08860 Castelldefels, Barcelona",Baix Llobregat,Spain,41.283,1.977,https://maps.app.goo.gl/YiWpPGCXzZHJKv5J6,,0
-94,Diaverum - Virgen de Montserrat,CLINIC,,VERIFIED,"C/ Grau de Sant Andreu, 467, 08030",Sant Andreu,Spain,41.443,2.188,https://g.co/kgs/Jif3puo,5.0,6
-95,Diaverum Palau,CLINIC,,VERIFIED,"C/ Sant Antonio Maria Claret, 135",BCN,SPAIN,41.41,2.173,https://maps.app.goo.gl/2ytrU3dTJQDYFZS87,,0
 96,Diaverum - Rotellar,CLINIC,,VERIFIED,"Carrer de Concepción Arenal, 151, Sant Andreu, 08027 Barcelona",Barcelona,SPAIN,41.427,2.184,https://maps.app.goo.gl/HuNWzYC91tb6FTvJA,4.0,1
-97, Hospital Municipal de Badalona,HOSPITAL,,VERIFIED,"Via Augusta, 9-13, 08911 Badalona, Barcelona",BCN,Spain,41.451,2.248,https://g.co/kgs/B9hNVYh,5.0,2
 98, Centre Sociosanitari El Carme - Badalona,INTERMEDIATE_CARE_CENTER,,VERIFIED,"Camí de Sant Jeroni de la Murtra, 60, 08917 Badalona, Barcelona",Badalona,Spain,41.469,2.229,https://g.co/kgs/4sJF3ES,4.8,66
-99,Hospital de Blanes,HOSPITAL,,VERIFIED,"Carrer Accés Cala Sant Francesc, 5, 17300 Blanes, Girona",Blanes,Spain,41.688,2.802,https://maps.app.goo.gl/XsChHS6E3G8U6hbk8,4.9,119
+99,Hospital de Blanes,HOSPITAL,,VERIFIED,"Carrer Accés Cala Sant Francesc, 5, 17300 Blanes, Girona",Blanes,Spain,41.688,2.802,https://maps.app.goo.gl/XsChHS6E3G8U6hbk8,4.9,128
 100,Hospital Ribera Povisa,HOSPITAL,,VERIFIED,"Rúa de Salamanca, 5, Freixeiro, 36211 Vigo, Pontevedra",Pontevedra,Spain,42.224,-8.72,https://maps.app.goo.gl/evzqfxwqWA96F1m1A,,0
 101,Consorci Sanitari Integral,HOSPITAL,,VERIFIED,"Av. Josep Molins, 29, 08906 L'Hospitalet de Llobregat, Barcelona",Barcelona,España,41.375,2.106,https://maps.app.goo.gl/5iK8wt97ojs73RfR9,,0
 102,🚨 Turno Urgente - Maresme ,HOSPITAL,,VERIFIED,Maresme,Maresme,España,41.538,2.445,https://maps.app.goo.gl/Ruv955uCzHqMQHVm8,,0
 103,🚨 Turno Urgente - Vallès,HOSPITAL,,VERIFIED,Vallés,Vallés,España,41.468,2.078,https://maps.app.goo.gl/3Y1EnrM1DBtkekvn9,,0
-105,Fundación Hospitalarias Madrid- Hospital General,HOSPITAL,,VERIFIED,"C. del Dr. Esquerdo, 83, Retiro, 28007 Madrid",Madrid,"Spain, ",40.419,-3.668,https://maps.app.goo.gl/JV1XPNfFLHpdwERk8,4.6,582
-106,Hospital de Mataró,HOSPITAL,,VERIFIED,Consorcio Sanitario del Maresme - Hospital de Mataró,Mataro,spain,41.556,2.43,https://maps.app.goo.gl/PJzwBxDLY1z66xqd6,4.6,388
+105,Fundación Hospitalarias Madrid- Hospital General,HOSPITAL,,VERIFIED,"C. del Dr. Esquerdo, 83, Retiro, 28007 Madrid",Madrid,"Spain, ",40.419,-3.668,https://maps.app.goo.gl/JV1XPNfFLHpdwERk8,4.6,595
+106,Hospital de Mataró,HOSPITAL,,VERIFIED,Consorcio Sanitario del Maresme - Hospital de Mataró,Mataro,spain,41.556,2.43,https://maps.app.goo.gl/PJzwBxDLY1z66xqd6,4.6,398
 107,Hospital Juan Cardona,HOSPITAL,,VERIFIED,"Rúa Pardo Bazán, s/n, 15404 Ferrol, A Coruña",A Coruña,Spain,43.481,-8.203,https://maps.app.goo.gl/utuMkQx5BRsRGvHG9,,0
-109,Centro de Oftalmología Barraquer ,CLINIC,,VERIFIED," C/ de Muntaner, 314, Sarrià-Sant Gervasi, 08021 Barcelona",BCN,Spain,41.4,2.141,https://g.co/kgs/pRRGtDD,,0
-110,FMC Dialcentro,CLINIC,,VERIFIED,"c/ Pilar Millán Astray,2. 28009",Madrid,Spain ,40.416,-3.672,https://maps.app.goo.gl/kJUWwJSE2RBvtkZt9,,0
 111,FMC Alcobendas,CLINIC,,VERIFIED," Av. de Camilo José Cela, 56, 28108 Alcobendas, Madrid",MAD,Spain,40.0,-3.642,https://g.co/kgs/nxhnu6F,5.0,6
-112,Instituto Clavel Chamartín,CLINIC,,VERIFIED,"C. de Joaquín Costa, 28, primera planta, Chamartín, 28002 Madrid",MAD,Spain,40.448,-3.687,https://g.co/kgs/PoAMnZ4,,0
-113,Diaverum Baix Llobregat,CLINIC,,VERIFIED,"C/ Motors, 392, planta baja  08908 Hospitalet de Llobregat",Barcelona,Spain,41.348,2.105,https://g.co/kgs/V29bjLo,,0
-114,Diaverum Nephros,CLINIC,,VERIFIED,"C/ Harmonía, 7 08035 Barcelona",Barcelona,Spain,41.432,2.145,https://g.co/kgs/TG31i46,,0
 115, 🚨 Turno Urgente - Blanes,HOSPITAL,,VERIFIED,Blanes,Blanes,España,41.676,2.787,https://g.co/kgs/vdb1iEh,,0
-116,Hospital Ntra Sra del Rosario,HOSPITAL,,VERIFIED,"C. del Príncipe de Vergara, 53, Salamanca, 28006 Madrid",Madrid,Spain,40.432,-3.68,https://maps.app.goo.gl/oTEBz8T9mBg3CxZ39,,0
 117,Hospital Ribera Virgen de la Caridad,HOSPITAL,,VERIFIED,"C. Jorge Juan, 30, 30204 Cartagena, Murcia",Murcia,Spain ,37.615,-0.988,https://maps.app.goo.gl/QJ73hav2UnhD9bXa8,,0
-120,Hospital Universitari Sagrat Cor,HOSPITAL,,VERIFIED," Carrer de Viladomat, 288, L'Eixample, 08029 Barcelona",BCN,Spain,41.387,2.148,https://g.co/kgs/wjsyzFi,4.0,91
-122,Parc Sanitari Pere Virgili,INTERMEDIATE_CARE_CENTER,,VERIFIED,"Carrer d'Esteve Terradas, 30, Gràcia, 08023 Barcelona",BCN,Spain,41.414,2.142,https://g.co/kgs/CKk7YjR,4.6,109
-125,Hospital de Viladecans,HOSPITAL,,VERIFIED,"Avinguda del Mil·lenari, 08840 Viladecans, Barcelona",BCN,Spain,41.32,2.025,https://g.co/kgs/dXMiZvF,,0
-126,Residència i Centre de Dia Gavà,NURSING_HOME,,VERIFIED,"Carrer de la Concòrdia, 24, 08850 Gavà, Barcelona",BCN,Spain,41.305,2.004,https://g.co/kgs/WRKL9Nr,,0
-127,Clínica Corachan,HOSPITAL,,VERIFIED,"Plaza Dr, Pl. de Manuel Corachán, 4, Distrito de Sarrià-Sant Gervasi, 08017 Barcelona",BCN,Spain,41.394,2.13,https://maps.app.goo.gl/M2UWhLbaEPMTyeR1A,,0
+122,Parc Sanitari Pere Virgili,INTERMEDIATE_CARE_CENTER,,VERIFIED,"Carrer d'Esteve Terradas, 30, Gràcia, 08023 Barcelona",BCN,Spain,41.414,2.142,https://g.co/kgs/CKk7YjR,4.6,110
+124,Hospital Ribera Covadonga,HOSPITAL,,VERIFIED,"C. Gral. Suárez Valdés, 40, Gijon-Este, 33204 Gijón, Asturias",GJN,España,43.5301,-5.64912,https://maps.app.goo.gl/Fh1pQ7hNwek9UFz1A,,0
 128,Hestia Palau,INTERMEDIATE_CARE_CENTER,,VERIFIED,"Carrer de Sant Antoni Maria Claret, 135, Horta-Guinardó, 08025 Barcelona",BCN,Spain,41.413,2.174,https://g.co/kgs/1xXALRE,3.5,9
 130,Hestia Duran i Reynals,INTERMEDIATE_CARE_CENTER,,VERIFIED,"Avinguda de la Granvia de l’Hospitalet, 199, 08908 L'Hospitalet de Llobregat, Barcelona",BCN,Spain,41.353,2.122,https://g.co/kgs/aAdLcmc,4.4,31
 131,CAP Nova Lloreda 8,CAP,,VERIFIED,"Av. de Catalunya, 62, 64, 08917 Badalona, Barcelona",BCN,Spain,41.451,2.233,https://g.co/kgs/RRWySuj,5.0,5
 132,CAP Progrés-Raval,CAP,,VERIFIED,"Carrer del General Weyler, 44, 08912 Badalona, Barcelona",BCN,Spain,41.45,2.245,https://maps.app.goo.gl/h4zYPE7sLW4LXNjX6,5.0,3
-133,IOA Madrid - Miranza,CLINIC,,VERIFIED,"C. de Galileo, 104, y 110, Chamberí, 28003 Madrid",MAD,Spain,40.439,3.71,https://g.co/kgs/2eiTgwX,4.5,2
-134,IM Clinic,CLINIC,,VERIFIED," Carrer de Victor Hugo, 24, 08174 Sant Cugat del Vallès, Barcelona",BCN,Spain,41.48,2.08,https://g.co/kgs/QSgKSd2,5.0,1
-135,CST - Hospital Terrassa,HOSPITAL,,VERIFIED,"Carr. de Torrebonica, s/n, 08227 Terrassa, Barcelona",BCN,SPAIN,41.557,2.053,https://maps.app.goo.gl/wPwVDFwXfob992P89,4.7,55
+135,CST - Hospital Terrassa,HOSPITAL,,VERIFIED,"Carr. de Torrebonica, s/n, 08227 Terrassa, Barcelona",BCN,SPAIN,41.557,2.053,https://maps.app.goo.gl/wPwVDFwXfob992P89,4.8,58
 136,CAP Apenins-Montigalà,CAP,,VERIFIED,"Carrer Apenins, s/n, 08917 Badalona, Barcelona",BCN,Spain,41.45,2.247,https://g.co/kgs/DrSt1ey,5.0,11
-137,Hospital Sant Antoni Abat,HOSPITAL,,VERIFIED,"Carrer de Sant Josep, 21, 23, 08800 Vilanova i la Geltrú, Barcelona",BCN,Spain,41.225,1.725,https://g.co/kgs/xCo5qGD,,0
-138,CAP Montgat,CAP,,VERIFIED,"Passatge Sant Antoni Maria Claret, s/n, 08390 Montgat, Barcelona",BCN,Spain,41.469,2.281,https://g.co/kgs/KhEu3nB,5.0,16
+139,CAP Nova Lloreda 10,CAP,,VERIFIED,"Av. de Catalunya, 62, 64, 08917 Badalona, Barcelona",BCN,Spain,41.4497,2.22974,https://g.co/kgs/rJvYkiK,5.0,7
 142,CAP Morera Pomar,CAP,,VERIFIED,"Carrer de Pere III, 1, 08915 Badalona, Barcelona",BCN,Spain,41.449,2.232,https://g.co/kgs/VU5rRVQ,5.0,2
-143,CAP Doctor Martí i Julià,CAP,,VERIFIED,"Av. del Baix Llobregat, 17, 08940 Cornellà de Llobregat, Barcelona",BCN,Spain,41.348,2.078,https://g.co/kgs/dfnE4ho,,0
 144,Grupo Vivo - Clínica Médica Los Belgas,CLINIC,,VERIFIED,"C. Pereda, 1-3, 28400 Collado Villalba, Madrid",MAD,Spain,40.635,-4.005,https://g.co/kgs/yNW9uo8,5.0,6
-145,Hospital Clínic de Barcelona,HOSPITAL,,VERIFIED,"Carrer de Villarroel, 170, L'Eixample, 08036 Barcelona",BCN,Spain,41.386,2.151,https://g.co/kgs/iDxNxGj,,0
-147,Fresenius Sant Boi,CLINIC,,VERIFIED,"Carretera Santa Creu de Calafell, 49A",Barcelona,Spain,41.331,2.041,https://maps.app.goo.gl/WyB81BAq8sg26wwm8,4.0,5
+147,Fresenius Sant Boi,CLINIC,,VERIFIED,"Carretera Santa Creu de Calafell, 49A",Barcelona,Spain,41.331,2.041,https://maps.app.goo.gl/WyB81BAq8sg26wwm8,4.2,6
 148,Fresenius  Terrassa,CLINIC,,VERIFIED,"Av. de Can Jofresa, 6, 08223 Terrassa, Barcelona",Barcelona,España,41.55,2.022,https://maps.app.goo.gl/zQrT1EydMfYuQt17A,5.0,2
 150,CMD SALUD CALIDAD INTEGRAL S.L.,MEDICAL_CENTER,,VERIFIED,"Carreter E, Zona Franca, 40 Zona Franca- port Sants-Montjuïc 08040",Barcelona,España,41.328,2.125,https://maps.app.goo.gl/C5WxQDkPFgp9eVaEA,5.0,2
 152,CQM Clinic Maresme SL,CLINIC,,VERIFIED,"Carrer Lepanto 13-21, 08301 Mataró ",Barcelona,España,41.536,2.444,https://g.co/kgs/bDqrQtn,4.5,2
 153,Clínica López Ibor,CLINIC,,VERIFIED,"Calle del Dr. Juan José López Ibor, 2, Moncloa - Aravaca, 28035 Madrid",MAD,spain,40.433,-3.722,https://g.co/kgs/ahCQAo1,,0
 154,Residencia Bouco Aravaca,NURSING_HOME,,VERIFIED,"Av. del Talgo, 53, Moncloa - Aravaca, 28023 Madrid",MAD,Spain,40.447,-3.78,https://maps.app.goo.gl/R3zZyENQETR3HSeUA,4.0,1
-155,Residència i Centre de Dia Bouco Ciutat Diagonal,NURSING_HOME,,VERIFIED,"Av. la Miranda, 8, 16, 08950 Esplugues de Llobregat, Barcelona",BCN,Spain,41.384,2.086,https://g.co/kgs/73uxoV7,,0
-156,LANTUS Residencias,NURSING_HOME,,VERIFIED,"Mare de Déu dels Àngels, 2-4, 08921 Sta. Coloma de Gramenet",Barcelona,España,41.453,2.204,https://maps.app.goo.gl/MVSLJ7eeGcSWV28m7,,0
-157,CAP Tiana,CAP,,VERIFIED,"Carrer Franci 9 (Casa de la Punxa), 08391 Tiana",BCN,Spain,41.483,2.268,https://maps.app.goo.gl/W9pyhBCMZ2p4p9YE9,,0
-159,Residencia Hestia Esquerdo,NURSING_HOME,,VERIFIED,"Avenida de los Poblados, 70, 28044 Madrid",MAD,Spain,40.382,-3.758,https://maps.app.goo.gl/DGgrMrUjqnA9RZKG7,,0
 160,Clinica Diagonal,HOSPITAL,,VERIFIED,C/Sant Mateu 24-26,BCN,Spain,41.372,2.083,https://g.co/kgs/ET4xurU,5.0,18
-161,COLISEE Sant Jordi,NURSING_HOME,,VERIFIED,"Pg. de la Vall d'Hebron, 135, 145, Horta-Guinardó, 08035 Barcelona",Barcelona,Spain,41.428,2.144,https://g.co/kgs/8eykUBF,4.4,75
-162,COLISEE Valldoreix,NURSING_HOME,,VERIFIED,"Rambla Mossèn Jacint Verdaguer, 199, 08197 Valldoreix, Barcelona",Barcelona,Spain,41.465,2.066,https://g.co/kgs/sP4WuES,3.9,198
+161,COLISEE Sant Jordi,NURSING_HOME,,VERIFIED,"Pg. de la Vall d'Hebron, 135, 145, Horta-Guinardó, 08035 Barcelona",Barcelona,Spain,41.428,2.144,https://g.co/kgs/8eykUBF,4.4,84
+162,COLISEE Valldoreix,NURSING_HOME,,VERIFIED,"Rambla Mossèn Jacint Verdaguer, 199, 08197 Valldoreix, Barcelona",Barcelona,Spain,41.465,2.066,https://g.co/kgs/sP4WuES,4.0,223
 163,Fundació Hospitalàries Barcelona,HOSPITAL,,VERIFIED,PASSEIG VALL D'HEBRON 107-117,Barcelona,Spain,41.429,2.146,https://g.co/kgs/p9tsVRe,4.8,74
-164,Fundació Hospitalàries Martorell,HOSPITAL,,VERIFIED,"Av. Comte Llobregat, 117 · 08760 · Martorell",Barcelona,Spain,41.48,1.923, https://g.co/kgs/Yuto6ay,,0
 165,Hospital Ruber Juan Bravo 39,HOSPITAL,,VERIFIED," Calle de Juan Bravo, 39, Salamanca, 28006 Madrid",MAD,Spain,40.438,-3.677,https://maps.app.goo.gl/d2G9ReA35vbWKzZs6,4.9,227
-175,Activita Centre Mèdic,MEDICAL_CENTER,,VERIFIED,"Carrer de Joan Prim, 136, 146, 08402 Granollers, Barcelona",BCN,Spain,41.61,2.289,https://g.co/kgs/xrAXHrr,,0
-177,Start Madrid,MEDICAL_CENTER,,VERIFIED,"C. José Abascal, 56, floor 2, 28003 Madrid, Spain.",MAD,Spain,40.43,-3.69,https://maps.app.goo.gl/HNGmfaah9X3juhqe8,,0
-178,PreverSalud Madrid,OCCUPATIONAL_HEALTH_AND_SAFETY_CENTER,,VERIFIED,"C. Islas Chafarinas, 21C, Fuencarral-El Pardo, 28035 Madrid",MAD,Spain,40.474,-3.712,https://g.co/kgs/V36eUNi,,0
+169,Institut Marquès Obstetricia i Ginecología S.L.P.,CLINIC,,VERIFIED,"Avenida Diagonal, 662-664, 08034",Barcelona,Barcelona ,41.3888,2.15899,https://g.co/kgs/NLrcrzp,5.0,1
+171,"Institut Català de Retina S,L.",CLINIC,,VERIFIED,"Passeig Bonanova 22, 8022",Barcelona,Barcelona,41.4032,2.126,https://maps.app.goo.gl/w6KM9rDxzQcYKr5UA,,0
 179,PreverSalud Barcelona,OCCUPATIONAL_HEALTH_AND_SAFETY_CENTER,,VERIFIED,Calle Por definir,BCN,Spain,41.387,2.701,https://g.co/kgs/CSmuu4Z,5.0,2
-180,Hospital de Figueres,HOSPITAL,,VERIFIED,"Ronda del Rector Arolas, s/n, 17600 Figueres, Girona",Figueres,Spain,42.265,2.964,https://g.co/kgs/SgoqSFd,5.0,5
-181,Turó Park International Healthcare,MEDICAL_CENTER,,VERIFIED,"Plaza Sant Gregori Taumaturg nº5, 08021, Barcelona",BCN,Spain,41.395,2.136,https://g.co/kgs/XtVg2z7,,0
-182,Start Barcelona,MEDICAL_CENTER,,VERIFIED,"Av. de Vallcarca, 151, Gràcia, 08023 Barcelona",BCN,SPAIN,41.414,2.143,https://maps.app.goo.gl/65sWGWN3ZUpoyZGk8,,0
+180,Hospital de Figueres,HOSPITAL,,VERIFIED,"Ronda del Rector Arolas, s/n, 17600 Figueres, Girona",Figueres,Spain,42.265,2.964,https://g.co/kgs/SgoqSFd,5.0,6
 184,Residència Bon Repòs,NURSING_HOME,,VERIFIED," Pg. de St. Joan, 156, Gràcia, 08037 Barcelona",BCN,Spain,41.404,2.164,https://g.co/kgs/VjdYPyr,5.0,1
 185,Fresenius Barcelona Glòries,CLINIC,,VERIFIED,"Carrer del Consell de Cent, 581, L'Eixample, 08013 Barcelona",BCN,Spain,41.405,2.184,https://g.co/kgs/M91QwZG,5.0,4
-190,Sant Andreu Salut,NURSING_HOME,,VERIFIED,"Plaça de l'Hospital, 08241 Manresa, Barcelona",Manresa,España,41.725,1.829,https://maps.app.goo.gl/WTK3wNM2J58EFkRu6,,0
-203,Unidad de Terapia Ocupacional El Bosque SL ,NURSING_HOME,,VERIFIED," C. de los Peñascales, 14, Salamanca, 28028 Madrid",Madrid,España,40.42,-3.66,https://maps.app.goo.gl/sJNkRYZN8AhxNqtL8,,0
-208,Hestia La Robleda,SOCIAL_HEALTHCARE_CENTER,,VERIFIED,"Lugar del Santiso, S/N, 15821 Santiso, A Coruña",La Coruña,Spain,42.931,-8.126,https://g.co/kgs/1LKgeky,,0
-209,Hospital Psiquiátrico Hestia San José,HOSPITAL,,VERIFIED,"Rúa Tomás A. Alonso, 89, Coia, 36208 Vigo, Pontevedra",Pontevedra,España,42.228,-8.745,https://g.co/kgs/Z26AmKw,,0
+204,Hospital General De Granollers,HOSPITAL,,VERIFIED," Carrer de Francesc Ribas, s/n, 08402 Granollers, Barcelona",Granollers,Spain,41.6056,2.2975,https://g.co/kgs/ZybhFqZ,4.6,20
+210,Centre de Salut Granollers (CSG),HOSPITAL,,VERIFIED,"Carrer de Girona, 5, 08402 Granollers Planta 1",Granollers,Granollers,41.6097,2.287,https://g.co/kgs/HEKDXD5,,0
+212,Fresenius - Hospitalet,CLINIC,,VERIFIED,"C/Rambla Marina, 429,",Hospitalet de Llobregat,Hospitalet de Llobregat,41.35974,2.10905,https://g.co/kgs/qJGArU9,5.0,2
 213,Fresenius Medical Care Granollers,CLINIC,,VERIFIED,"Carrer de Manel Cornella 37, 08402 Granollers, Barcelona, España",BCN,Spain,41.608,2.286,https://g.co/kgs/GJBTe1Y,,0
-214,FUNDACIÓ BARCELONABETA BRAIN RESEARCH CENTER,RESEARCH_CENTER,,VERIFIED,"C/Wellington, 30 08005 Barcelona",Barcelona,España,41.389,2.19,https://maps.app.goo.gl/5TzsULhci2UJvuAV8,,0
 217,Centro Asistencial Solimat Getafe,OCCUPATIONAL_HEALTH_AND_SAFETY_CENTER,,VERIFIED,"Calle Irene Joliot Curie 2, 28906 Getafe",Madrid,España,40.304,-3.694,https://maps.app.goo.gl/ZAD68YLdgFtWmZ1n8,,0
-218,Centro Asistencial Solimat Illescas,DAY_CARE_CENTER,,VERIFIED,"Carretera Ugena 2, Illescas 45200, Toledo",Illescas,España,40.141,-3.838,https://maps.app.goo.gl/Zde13TfSTkLyVYTB7,,0
-223,Centro en Granollers,HOSPITAL,,VERIFIED,Carrer de Barcelona 65,Granollers,Spain,41.607,2.287,https://maps.app.goo.gl/x8uun5adZUa3rHzS7,,0
+220,Diaverum Mataró,CLINIC,,VERIFIED,"Ronda dels Països Catalans, 47, 49 Interior, 08304 Mataró, Barcelona, España",Mataró,España,41.539,2.4445,https://g.co/kgs/Kt61mx9,,0
 224,Centro en Blanes,HOSPITAL,,VERIFIED,"Ctra. Malgrat 17300 Blanes, Girona",Blanes,Spain,41.675,2.779,https://maps.app.goo.gl/YnnMVfaKzqXWM62w6,,0
-225,Centro en Barcelona,HOSPITAL,,VERIFIED,"Paseo de gracia, 6",Barcelona,Spain,41.389,2.17,https://maps.app.goo.gl/PPtbG1VpHN8bsqYG9,,0
-228,MC Mutual,MEDICAL_CENTER,,VERIFIED,"Carrer Copernic 58, Barcelona 08006",Barcelona,España,41.401,2.141,https://maps.app.goo.gl/bHy1wk8f6ZCL2W6h9,,0
-230,Hospital de Majadahonda,HOSPITAL,,VERIFIED,"Carretera de Pozuelo 61, Majadahonda",Madrid,España,40.451,-3.85,https://maps.app.goo.gl/XpzoKi3Ve9cXx62v6,,0

@@ -1,0 +1,30 @@
+Nombre_Original;Nombre_Correcto;Ciudad;Tipo;Direccion;Latitud_Corregida;Longitud_Corregida;Fuente_Problema
+H. U. San Francisco de Asis;Hospital Universitario San Francisco de Asís;Madrid;HOSPITAL;Calle de Joaquín Costa, 28, 28002 Madrid;40.442517;-3.683065;Coordenadas extremas/fuera de límites
+Hospital Quironsalud del Vallès;Hospital Quirónsalud del Vallès;Sabadell;HOSPITAL;Passeig Rubió i Ors, 23, 08203 Sabadell;41.53241;2.1117;Coordenadas extremas/fuera de límites
+Intem - Hospital del Mar;Hospital del Mar;Barcelona;HOSPITAL;Passeig Marítim, 25-29, 08003 Barcelona;41.3841;2.19403;Coordenadas extremas/fuera de límites
+Grupo Vivo - UNIDAD MOVIL PET TAC- Granollers;Grupo Vivo - Unidad Móvil PET TAC Granollers;Granollers;CLINIC;Granollers, Barcelona;41.6078;2.2875;Coordenadas extremas/fuera de límites
+Eventos;Eventos Medical Transportation;Barcelona;MEDICAL_TRANSPORTATION;Barcelona;41.3866;2.16992;Coordenadas extremas/fuera de límites
+Hospital Ribera Caravaca;Hospital Ribera Caravaca (Centro Médico Virgen de la Caridad);Caravaca de la Cruz;HOSPITAL;Caravaca de la Cruz, 30400 Murcia;38.106;-1.869;Fuera de límites España (latitud correcta)
+Hospital Ribera Covadonga;Hospital Ribera Covadonga;Gijón;HOSPITAL;Barrio de El Coto, Gijón, Asturias;43.5301;-5.64912;Coordenadas extremas/fuera de límites
+Fertilab Barcelona;Fertilab Barcelona;Barcelona;CLINIC;Ronda del General Mitre, 14, 08017 Barcelona;41.398;2.134;Coordenadas extremas/fuera de límites
+CAP Nova Lloreda 10;CAP Nova Lloreda 10;Barcelona;CAP;Barcelona;41.4497;2.22974;Coordenadas extremas/fuera de límites
+Hospital HC Miraflores;Hospital HCMiraflores;Zaragoza;HOSPITAL;Zaragoza;41.643;-0.8781;Coordenadas extremas/fuera de límites
+Hospital San Juan de Dios Zaragoza;Hospital San Juan de Dios Zaragoza;Zaragoza;HOSPITAL;Zaragoza;41.643;-878.0;Coordenadas extremas (longitud correcta)
+Institut Marquès Obstetricia i Ginecología S.L.P.;Institut Marquès;Barcelona;CLINIC;Av. Diagonal, 662-664, 08034 Barcelona;41.3888;2.15899;Coordenadas extremas/fuera de límites
+Colisee Igualada - La Saleta Care SL;Colisee Igualada - La Saleta Care;Igualada;NURSING_HOME;Igualada, Barcelona;41.582;1.617;Coordenadas extremas/fuera de límites
+Institut Català de Retina S,L.;Institut Català de Retina;Barcelona;CLINIC;Barcelona;41.4032;2.126;Coordenadas extremas/fuera de límites
+Colisee Paral·lel La Saleta Care S.L;Colisee Paral·lel La Saleta Care;Barcelona;NURSING_HOME;Barcelona;41.3749;2.15332;Coordenadas extremas/fuera de límites
+Centro Asistencial Mutuam La Creueta;Centro Asistencial Mutuam La Creueta;Sabadell;NURSING_HOME;Sabadell, Barcelona;41.5495;2.11358;Coordenadas extremas/fuera de límites
+Fecundación In Vitro Valencia, S.L.;Fecundación In Vitro Valencia;Valencia;CLINIC;Valencia;39.4778;-0.3717;Coordenadas extremas/fuera de límites
+Colisee Madrid;Colisee Madrid;Madrid;NURSING_HOME;Madrid;40.4998;-3.68835;Coordenadas extremas/fuera de límites
+Colisee Tarragona;Colisee Tarragona;Tarragona;NURSING_HOME;Tarragona;41.1576;1.24594;Coordenadas extremas/fuera de límites
+Colisee Castellón;Colisee Castellón;Castellón;NURSING_HOME;Castellón;39.9939;-0.0725;Coordenadas extremas/fuera de límites
+Colisee Salamanca;Colisee Salamanca;Salamanca;NURSING_HOME;Salamanca;40.9481;-5.6705;Coordenadas extremas/fuera de límites
+Colisee Bilbao;Colisee Bilbao;Bilbao;NURSING_HOME;Bilbao;43.2537;-2.9389;Coordenadas extremas/fuera de límites
+Hospital General De Granollers;Hospital General de Granollers (Fundació Privada Hospital Asil de Granollers);Granollers;HOSPITAL;Avinguda Francesc Ribas s/n, 08402 Granollers;41.6056;2.2975;Coordenadas extremas/fuera de límites
+Hospital d'Atenció Intermèdia Mutuam Girona;Hospital d'Atenció Intermèdia Mutuam Girona;Barcelona;SOCIAL_HEALTHCARE_CENTER;Barcelona;41.9875;2.8211;Coordenadas extremas/fuera de límites
+Centre de Salut Granollers (CSG);Centre de Salut Granollers;Granollers;HEALTH_CENTER;Granollers, Barcelona;41.6097;2.287;Coordenadas extremas/fuera de límites
+Fresenius - Hospitalet;Fresenius Hospitalet;Hospitalet de Llobregat;CLINIC;Hospitalet de Llobregat, Barcelona;41.35974;2.10905;Coordenadas extremas/fuera de límites
+Diaverum Pineda de Mar;Diaverum Pineda de Mar;Pineda de Mar;CLINIC;Pineda de Mar, Barcelona;41.6288;2.68967;Coordenadas extremas/fuera de límites
+Diaverum Mataró;Diaverum Mataró;Mataró;CLINIC;Mataró, Barcelona;41.539;2.4445;Coordenadas extremas/fuera de límites
+Hospital de Barcelona;;;;;41.38989;2.13007;
