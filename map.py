@@ -226,6 +226,48 @@ def clean_facility_id(val):
     except Exception:
         return str(val)
 
+def get_facility_logo(facility_name):
+    """
+    Determine which logo to use based on facility name.
+    Returns the path to the appropriate logo image.
+    """
+    if not facility_name:
+        return "logo.png"
+    
+    facility_name_lower = str(facility_name).lower()
+    
+    # Define the 7 largest healthcare groups and their keywords
+    group_logos = {
+        "quironsalud": "Grupo Quirónsalud.jpg",
+        "quirónsalud": "Grupo Quirónsalud.jpg",
+        "quiron": "Grupo Quirónsalud.jpg",
+        "quirón": "Grupo Quirónsalud.jpg",
+        
+        "hla": "Grupo HLA.png",
+        "grupo hla": "Grupo HLA.png",
+        
+        "fresenius": "Fresenius.png",
+        
+        "diaverum": "Diaverum.png",
+        
+        "colisee": "Colisee.png",
+        
+        "fundación hospitalarias": "FUNDACION HOSPITALARIAS.png",
+        "fundacion hospitalarias": "FUNDACION HOSPITALARIAS.png",
+        "hospitalarias": "FUNDACION HOSPITALARIAS.png",
+        
+        "grup mutuam": "Grup Mutuam.jpeg",
+        "mutuam": "Grup Mutuam.jpeg"
+    }
+    
+    # Check if any group keyword is in the facility name
+    for keyword, logo_path in group_logos.items():
+        if keyword in facility_name_lower:
+            return logo_path
+    
+    # Default logo for other facilities
+    return "logo.png"
+
 def load_data_from_files(data_dir='data'):
     """Load processed data from CSV files"""
     logger.info("=== 📂 LOADING DATA FROM FILES ===")
@@ -338,13 +380,15 @@ def create_facilities_map_with_shifts(facilities_df, shifts_df, offers_df=None):
                     }
                     for _, o in fac_offers.iterrows()
                 ]
+            facility_name = str(row.get('nombre_correcto', row.get('facility_name', 'N/A')))
             facility = {
                 'id': fac_id,
-                'name': str(row.get('nombre_correcto', row.get('facility_name', 'N/A'))),
+                'name': facility_name,
                 'city': str(row.get('ciudad', row.get('city', 'N/A'))),
                 'address': str(row.get('direccion', row.get('address', 'N/A'))),
                 'latitude': float(row.get('latitud_corregida', row.get('latitude', 0))),
                 'longitude': float(row.get('longitud_corregida', row.get('longitude', 0))),
+                'logo_path': get_facility_logo(facility_name),
                 'shift_stats': shift_stats,
                 'shifts': shifts_list,
                 'offers': offers_list
@@ -468,7 +512,7 @@ def create_facilities_map_with_shifts(facilities_df, shifts_df, offers_df=None):
             facilitiesData.forEach(fac => {{
                 const lat = fac.latitude;
                 const lon = fac.longitude;
-                const hospitalIcon = L.divIcon({{ className: 'facility-marker', html: '<img src="public/logo.png" style="width:22px;height:22px;" alt="Logo"/>', iconSize: [32, 32], iconAnchor: [16, 16], popupAnchor: [0, -20] }});
+                const hospitalIcon = L.divIcon({{ className: 'facility-marker', html: '<img src="' + fac.logo_path + '" style="width:22px;height:22px;" alt="Logo"/>', iconSize: [32, 32], iconAnchor: [16, 16], popupAnchor: [0, -20] }});
                 let popupContent = '<div class="facility-popup">';
                 popupContent += '<h4 class="facility-header">' + fac.name + '</h4>';
                 // popupContent += '<div><strong>ID:</strong> ' + fac.id + '</div>'; // REMOVED ID FIELD
@@ -480,77 +524,6 @@ def create_facilities_map_with_shifts(facilities_df, shifts_df, offers_df=None):
                 popupContent += '<div class="stat-row"><span class="stat-label">TCAE (Auxiliares):</span><span class="stat-value">' + fac.shift_stats.tcae + '</span></div>';
                 popupContent += '<div class="stat-row"><span class="stat-label">Ofertas:</span><span class="stat-value">' + fac.shift_stats.offers + '</span></div>';
                 popupContent += '</div>';
-                if (fac.shifts && fac.shifts.length > 0) {{
-                    popupContent += '<div class="shift-list">';
-                    popupContent += '<div style="font-weight:bold; margin-bottom:5px; color:#007bff;">Detalles de turnos:</div>';
-                    fac.shifts.forEach(shift => {{
-                        const color = getColorBySpecialization(shift.specialization);
-                        popupContent += '<div class="shift-item">';
-                        popupContent += `<div class="shift-title" style="color:${{color}}">` + (shift.specialization || 'Turno') + '</div>';
-                        popupContent += '<div><strong>Inicio:</strong> ' + shift.start_time + '</div>';
-                        popupContent += '<div><strong>Fin:</strong> ' + shift.finish_time + '</div>';
-                        popupContent += '<div><strong>Categoría:</strong> ' + shift.category + '</div>';
-                        popupContent += '<div><strong>Plazas:</strong> ' + shift.capacity + '</div>';
-                        popupContent += '</div>';
-                    }});
-                    popupContent += '</div>';
-                }}
-                if (fac.offers && fac.offers.length > 0) {{
-                    popupContent += '<div style="font-weight:bold; margin-top:15px; color:#28a745;">Detalles de ofertas:</div>';
-                    fac.offers.forEach(offer => {{
-                        popupContent += '<div class="offer-item">';
-                        popupContent += `<div class="offer-title" style="color:#28a745;">` + (offer.external_id || 'Oferta') + '</div>';
-                        // Traducción de tipo de contrato
-                        let contrato = offer.contract_type;
-                        if (contrato === 'PERMANENT') contrato = 'Indefinido';
-                        else if (contrato === 'TEMPORAL') contrato = 'Temporal';
-                        else if (contrato === 'PART_TIME') contrato = 'Parcial';
-                        else if (contrato === 'INTERIM') contrato = 'Interino';
-                        else if (contrato === 'FIXED_TERM') contrato = 'Temporal';
-                        else if (contrato === 'INDEFINITE') contrato = 'Indefinido';
-                        // Traducción de categoría
-                        let categoria = offer.category;
-                        if (categoria === 'ENF') categoria = 'Enfermería';
-                        else if (categoria === 'TCAE') categoria = 'Auxiliar/TCAE';
-                        if (categoria && categoria !== 'NaN' && categoria !== '') {{
-                            popupContent += '<div><strong>Categoría:</strong> ' + categoria + '</div>';
-                        }}
-                        if (offer.skill && offer.skill !== 'NaN' && offer.skill !== '') {{
-                            popupContent += '<div><strong>Habilidad:</strong> ' + offer.skill + '</div>';
-                        }}
-                        if (contrato && contrato !== 'NaN' && contrato !== '') {{
-                            popupContent += '<div><strong>Tipo de Contrato:</strong> ' + contrato + '</div>';
-                        }}
-                        if ((offer.salary_min && offer.salary_min !== 'NaN' && offer.salary_min !== '') || 
-                            (offer.salary_max && offer.salary_max !== 'NaN' && offer.salary_max !== '')) {{
-                            let salaryText = '';
-                            if (offer.salary_min && offer.salary_min !== 'NaN' && offer.salary_min !== '') {{
-                                let formattedMin = parseFloat(offer.salary_min).toLocaleString('es-ES');
-                                salaryText += formattedMin;
-                            }}
-                            if (offer.salary_max && offer.salary_max !== 'NaN' && offer.salary_max !== '') {{
-                                if (salaryText) salaryText += ' - ';
-                                let formattedMax = parseFloat(offer.salary_max).toLocaleString('es-ES');
-                                salaryText += formattedMax;
-                            }}
-                            if (offer.salary_period && offer.salary_period !== 'NaN' && offer.salary_period !== '') {{
-                                let periodText = offer.salary_period;
-                                if (periodText === 'YEAR') periodText = 'año';
-                                else if (periodText === 'MONTH') periodText = 'mes';
-                                salaryText += ' ' + periodText;
-                            }}
-                            popupContent += '<div><strong>Salario:</strong> ' + salaryText + '</div>';
-                        }}
-                        if (offer.start_date && offer.start_date !== 'NaN' && offer.start_date !== '' && offer.start_date !== 'NaT') {{
-                            popupContent += '<div><strong>Fecha de Inicio:</strong> ' + offer.start_date + '</div>';
-                        }}
-                        if (offer.job_description && offer.job_description !== 'NaN' && offer.job_description !== '' && offer.job_description !== 'nan') {{
-                            popupContent += '<div><strong>Descripción:</strong> ' + offer.job_description + '</div>';
-                        }}
-                        popupContent += '</div>';
-                    }});
-                    popupContent += '</div>';
-                }}
                 popupContent += '</div>';
                 const marker = L.marker([lat, lon], {{ icon: hospitalIcon }}).bindPopup(popupContent);
                 marker.facilityData = fac;

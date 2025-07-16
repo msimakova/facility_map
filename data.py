@@ -266,20 +266,30 @@ def process_available_shifts(shifts_data, data_dir='data'):
     if shifts_data is None or shifts_data.empty:
         logging.warning("⚠️ No shifts data to process.")
         return False
-    # Filtrar solo shifts publicados y futuros
+    
+    # Filtrar solo shifts publicados, futuros y con external_visible = true
     now_utc = pd.Timestamp(datetime.now(timezone.utc))
     shifts_data['start_time_utc'] = pd.to_datetime(shifts_data['start_time_utc'], utc=True, errors='coerce')
-    available = shifts_data[(shifts_data['status'] == 'PUBLISHED') & (shifts_data['start_time_utc'] > now_utc)]
+    
+    # Aplicar filtros: status = PUBLISHED, fecha futura, y external_visible = true
+    available = shifts_data[
+        (shifts_data['status'] == 'PUBLISHED') & 
+        (shifts_data['start_time_utc'] > now_utc) &
+        (shifts_data['external_visible'] == True)
+    ]
+    
     # Seleccionar columnas clave
     cols = [
         'facility_id', 'id', 'start_time_utc', 'finish_time_utc', 'specialization',
         'specialization_display_text', 'category', 'capacity', 'facility_name'
     ]
     available = available[cols]
+    
     # Guardar
     out_path = os.path.join(data_dir, 'available_shifts.csv')
     available.to_csv(out_path, index=False, encoding='utf-8')
     logging.info(f"✅ Available shifts saved to: {out_path} ({len(available)} shifts)")
+    logging.info(f"📊 Filtered shifts: PUBLISHED + future dates + external_visible=true")
     return True
 
 def process_available_offers(offers_data, data_dir='data'):
